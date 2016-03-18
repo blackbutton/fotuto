@@ -6,7 +6,13 @@
 [![codecov.io](https://codecov.io/github/cesarcruz/fotuto/coverage.svg?branch=master)](https://codecov.io/github/cesarcruz/fotuto?branch=master)
 [![Code Climate](https://codeclimate.com/github/cesarcruz/fotuto/badges/gpa.svg)](https://codeclimate.com/github/cesarcruz/fotuto)
 
-**Fotuto** is a web SCADA to monitor variables, control actions and notifications.
+**Fotuto** is a web SCADA to monitor variables behaviour in real time.
+
+Data are read or written from external devices or physical sensor networks, showing it as human friendly mimics and charts. Besides achieve control actions, get alarm notifications and historical analysis.
+
+Builded as a [Django](https://www.djangoproject.com/) project and guided by [TDD](https://en.wikipedia.org/wiki/Test-driven_development), Fotuto provides an [SPA](https://en.wikipedia.org/wiki/Single-page_application) using [DRF](http://www.django-rest-framework.org), [AngularJS](https://angularjs.org/), [jQuery](https://jquery.com/), [Bootstrap](https://getbootstrap.com/), [D3.js](http://www.d3js.org/) and other libraries.
+
+**CAUTION:** This is a work in progress and it is in a pre-alpha status.
 
 # Install
 
