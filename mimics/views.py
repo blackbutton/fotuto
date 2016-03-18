@@ -6,7 +6,7 @@ from rest_framework import viewsets
 
 from .forms import MimicManageForm
 from .models import Mimic
-from .serializers import MimicSerializer
+from .serializers import MimicSerializer, MimicPostSerializer
 from windows.models import Window
 
 
@@ -36,5 +36,10 @@ class MimicManageView(SuccessMessageMixin, CreateView):
 
 class MimicViewSet(viewsets.ModelViewSet):
     queryset = Mimic.objects.all()
-    serializer_class = MimicSerializer
     filter_fields = ('window',)
+
+    def get_serializer_class(self):
+        if self.action in ('create', 'update'):
+            return MimicPostSerializer
+        else:
+            return MimicSerializer

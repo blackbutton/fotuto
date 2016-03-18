@@ -1,19 +1,40 @@
 from unittest import TestCase
 from rest_framework.test import APIRequestFactory
-from mimics.serializers import MimicSerializer
+from mimics.serializers import MimicSerializer, MimicPostSerializer
+from vars.models import Device, Var
 from windows.models import Window
 
 
-class DeviceSerializerTestCase(TestCase):
-    def setUp(self):
-        self.factory = APIRequestFactory()
+class MimicSerializerTestCase(TestCase):
+    @classmethod
+    def setUpClass(cls):
+        super(MimicSerializerTestCase, cls).setUpClass()
+        cls.factory = APIRequestFactory()
+        cls.window = Window.objects.create(title="Security System", slug='security-system')
+        cls.device = Device.objects.create(name="Door sensor")
+        cls.var_door_state = Var.objects.create(name="Door State", slug="door-state", device=cls.device)
+
+    def test_create_allow_to_specify_vars(self):
+        """Vars should contains vars data instead of links to avoid n+1 problem"""
+        serializer = MimicPostSerializer(
+            data={
+                'name': "Alarm Controller 1",
+                'slug': 'alarm-controller-1',
+                'window': self.window.pk,
+                'vars': [self.var_door_state.pk]
+            },
+            context={'request': self.factory.get('/api/mimics/')}
+        )
+        valid = serializer.is_valid()
+        self.assertTrue(valid, serializer.errors)
+        serializer.save()
+        self.assertEqual(serializer.data['vars'][0], self.var_door_state.pk)
 
     def test_get_links(self):
         # TODO: `Mimic.window` field should not be required, in fact, `mimics` can creates as a library to select from
         #     it to use in `Windows`, so there should be a m2m field `windows.mimics` instead `mimic.window`
-        window = Window.objects.create(title="Security System", slug='security-system')
         serializer = MimicSerializer(
-            data={'name': "Alarm Controller", 'slug': 'alarm-controller', 'window': window.pk},
+            data={'name': "Alarm Controller", 'slug': 'alarm-controller', 'window': self.window.pk, 'vars': []},
             context={'request': self.factory.get('/api/mimics/')}
         )
         valid = serializer.is_valid()

@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.core.urlresolvers import resolve
@@ -439,6 +441,8 @@ class VarAPITestCase(APITestCase):
 
 
 class MimicAPITestCase(APITestCase):
+    maxDiff = None
+
     def setUp(self):
         self.device_alarm_controller = Device.objects.create(
             name="Alarm Controller",
@@ -515,18 +519,35 @@ class MimicAPITestCase(APITestCase):
         route = resolve('/api/mimics/')
         self.assertEqual(route.func.__name__, 'MimicViewSet')
 
-    def test_create_mimic(self):
+    def test_create_mimic_without_vars(self):
         """Test that we can create a Mimic"""
         mimic_data = {
             'name': "Alarm Controller",
             'window': self.window_security.pk,
+            'vars': [],
             'x': 0,
             'y': 1
         }
         response = self.client.post('/api/mimics/', data=mimic_data, format='json', **self.auth_header)
         self.assertEqual(response.status_code, 201, response.data)
-        created_mimic = Mimic.objects.get(**mimic_data)
-        mimic_data.update({'id': created_mimic.pk, 'vars': []})
+        created_mimic = Mimic.objects.get(pk=response.data['id'])
+        mimic_data.update({'id': created_mimic.pk})
+        self.assertDictContainsSubset(mimic_data, response.data)
+
+        # Now create new mimic with vars
+        device_door_sensor = Device.objects.create(name="Door Sensor")
+        var_door_sensor_battery = Var.objects.create(name="Door Batery", slug="door-battery", device=device_door_sensor)
+        mimic_data = {
+            'name': "Alarm Door Sensor",
+            'window': self.window_security.pk,
+            'vars': [var_door_sensor_battery.pk],
+            'x': 0,
+            'y': 1
+        }
+        response = self.client.post('/api/mimics/', data=mimic_data, format='json', **self.auth_header)
+        self.assertEqual(response.status_code, 201, response.data)
+        created_mimic = Mimic.objects.get(pk=response.data['id'])
+        mimic_data.update({'id': created_mimic.pk})
         self.assertDictContainsSubset(mimic_data, response.data)
 
     def test_get_mimic_return_correct_data(self):
@@ -538,13 +559,18 @@ class MimicAPITestCase(APITestCase):
         mimic_data.update({
             'id': self.mimic_sensor_front_door.pk,
             'window': self.mimic_sensor_front_door.window.pk,
-            'vars': list(self.mimic_sensor_front_door.vars.values_list('pk', flat=True)),
             'links': {
                 'self': 'http://testserver%s' % mimic_sensor_front_door_url_path,
                 'window': 'http://testserver/api/windows/%s/' % self.mimic_sensor_front_door.window.pk,
                 'vars': 'http://testserver/api/vars/?mimic=%s' % self.mimic_sensor_front_door.pk,
             }
         })
+        # Mimics should display vars data
+        mimic_vars_response = self.client.get(
+            'http://testserver/api/vars/?mimic=%s' % self.mimic_sensor_front_door.pk, **self.auth_header
+        )
+        mimic_data['vars'] = json.loads(json.dumps(mimic_vars_response.data['results']))
+
         self.assertDictEqual(mimic_data, response.data)
 
     def test_filter_routes(self):

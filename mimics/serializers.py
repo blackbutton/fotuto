@@ -1,9 +1,21 @@
 from rest_framework import serializers
 from rest_framework.reverse import reverse as drf_reverse
+
+from vars.models import Var
+from vars.serializers import VarSerializer
 from .models import Mimic
 
 
+class MimicPostSerializer(serializers.ModelSerializer):
+    vars = serializers.PrimaryKeyRelatedField(many=True, queryset=Var.objects.all())
+
+    class Meta:
+        model = Mimic
+        fields = ('id', 'name', 'window', 'vars', 'x', 'y')
+
+
 class MimicSerializer(serializers.ModelSerializer):
+    vars = VarSerializer(many=True, read_only=True)
     links = serializers.SerializerMethodField()
 
     class Meta:

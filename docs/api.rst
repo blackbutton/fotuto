@@ -216,8 +216,20 @@ Example response
        "id": 1,
        "name": "Front Door Sensor",
        "vars": [
-           "http://server/api/vars/1/",
-           "http://server/api/vars/2/"
+           {
+               "name": "Door 1",
+               "slug": "door-1",
+               "active": true,
+               "device": 1,
+               "var_type": "binary",
+               "units": "",
+               "value": 1,
+               "description": "Door 1 state: 1=Open, 0=Closed",
+               "links": {
+                   "self": "http://server/api/vars/1/",
+                   "device": "http://server/api/device/1/"
+               }
+           }
        ],
        "window": 1,
        "x": 0,
@@ -253,10 +265,7 @@ Example Response
    {
        "id": 1,
        "name": "Front Door Sensor",
-       "vars": [
-           "http://server/api/vars/1/",
-           "http://server/api/vars/2/"
-       ],
+       "vars": [1,2],
        "window": 1,
        "x": 0,
        "y": 0,
