@@ -49,7 +49,20 @@ Run Tests
 
 .. note:: Before continue, be sure to activate the virtual environment created on step 2.
 
+Back-end Tests
+--------------
+
 .. code::
 
    pip install -r requirments_test.txt
    python manage.py test
+
+Front-end Tests
+---------------
+Execute the following commands to configure and run SPA tests::
+
+   npm install karma protractor
+   webdriver-manager update
+   python manage.py runserver
+   protractor fotuto/static/spa/protractor.conf.js
+
