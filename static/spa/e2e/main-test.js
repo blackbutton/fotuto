@@ -36,17 +36,26 @@ describe('Given I am access to the site', function () {
 		var view_wizard_step = element(by.css('#ConfigWizardStepDevicesView'));
 		expect(view_wizard_step.isPresent()).toBeTruthy();
 
+		// Notice there is an empty list of device
 		var page_subheading = element.all(by.tagName('h3')).first();
 		expect(page_subheading.getText()).toBe('Devices');
-		// Notice the step navigator
+		// TODO: Notice the step navigator
 		// Wizard navigator only have step 1 active and other steps deactivated
 		// Notice the Devices subtitle
-		// Notice there is an empty list of device
+		var searchResult = element.all(by.repeater('device in devices'));
+		expect(searchResult.count()).toBe(0);
+
 		// Notice Device form
 		// Enter new device data
-
 		// Device fields
-		var name_input = $("input[name='name']");
+		$("input[name='name']").sendKeys('Alarm Controller');
+		// TODO: Slug field should generated automatically and it should not appear here
+		$("input[name='slug']").sendKeys('alarm-controller');
+		$("input[name='address']").sendKeys('0001');
+
+		// Submit form
+		var add_button = element(by.buttonText('Add'));
+		add_button.click();
 	});
 
 	/* TODO: 	it("Add two vars to the device", function () {
