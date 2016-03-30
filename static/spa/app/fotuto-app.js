@@ -6,7 +6,8 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'components/config-wizard/intro.html'
 		})
 		.when('/config/steps/1', {
-			templateUrl: 'components/config-wizard/step-devices.html'
+			templateUrl: 'components/config-wizard/step-devices.html',
+			controller: 'DeviceController'
 		})
 		.otherwise({
 			redirectTo: '/config/intro'

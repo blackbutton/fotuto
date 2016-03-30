@@ -42,8 +42,8 @@ describe('Given I am access to the site', function () {
 		// TODO: Notice the step navigator
 		// Wizard navigator only have step 1 active and other steps deactivated
 		// Notice the Devices subtitle
-		var searchResult = element.all(by.repeater('device in devices'));
-		expect(searchResult.count()).toBe(0);
+		var list_devices = element.all(by.repeater('device in devices'));
+		expect(list_devices.count()).toBe(0);
 
 		// Notice Device form
 		// Enter new device data
@@ -56,6 +56,12 @@ describe('Given I am access to the site', function () {
 		// Submit form
 		var add_button = element(by.buttonText('Add'));
 		add_button.click();
+
+		// Device now appears on the list
+		expect(list_devices.count()).toBe(1);
+		expect(list_devices.first().getText()).toBe('Alarm Controller');
+
+		// Form is cleared
 	});
 
 	/* TODO: 	it("Add two vars to the device", function () {
