@@ -15,6 +15,11 @@ describe('Given I am access to the site', function () {
 	// TODO: It should display the login page
 
 	it("Since there is no any windows, the configuration wizard intro is shown", function () {
+
+		// Config Wizard Intro page
+		var wizard_step_view = element(by.css('#ConfigWizardIntroView'));
+		expect(wizard_step_view.isPresent()).toBeTruthy();
+
 		// Check page title as Configuration Wizard
 		var page_heading = element.all(by.tagName('h2')).first();
 		// TODO: If the logged in user not have enough permissions instead config wizard it should display "No windows configured" message
@@ -27,8 +32,12 @@ describe('Given I am access to the site', function () {
 
 		// Start wizard
 		// Now user is on wizard step 1
-		//var page_subheading = element.all(by.tagName('h3')).first();
-		//expect(page_subheading.getText()).toBe('Devices');
+		// Config Wizard Intro page
+		var view_wizard_step = element(by.css('#ConfigWizardStepDevicesView'));
+		expect(view_wizard_step.isPresent()).toBeTruthy();
+
+		var page_subheading = element.all(by.tagName('h3')).first();
+		expect(page_subheading.getText()).toBe('Devices');
 		// Notice the step navigator
 		// Wizard navigator only have step 1 active and other steps deactivated
 		// Notice the Devices subtitle
