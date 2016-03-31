@@ -30,9 +30,10 @@ before_script:
   - export DJANGO_SETTINGS_MODULE=fotuto.settings
   - python manage.py migrate --noinput
   - npm install -g karma-cli
+  - npm install -g protractor
+  - webdriver-manager update --standalone
   - npm install -g bower
   - bower install
-  - node_modules/protractor/bin/webdriver-manager update
   - python manage.py runserver &
 
   # Configure firefox for Selenium tests
