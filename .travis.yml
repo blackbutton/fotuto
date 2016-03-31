@@ -30,8 +30,9 @@ before_script:
   - export DJANGO_SETTINGS_MODULE=fotuto.settings
   - python manage.py migrate --noinput
   - npm install karma
+  - npm install karma-jasmine
   - npm install karma-cli
-  - npm install protractor
+  - npm install protractor@2
   - webdriver-manager update --standalone
   - npm install -g bower
   - bower install
@@ -44,9 +45,9 @@ before_script:
   - "java -jar selenium-server-standalone-2.52.0.jar > /dev/null &"
 
 script:
-  - coverage run --source=fotuto manage.py test
   - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
   - protractor static/spa/protractor.conf.js --single-run --browsers PhantomJS
+  - coverage run --source=fotuto manage.py test
 
 after_success:
   - codecov
