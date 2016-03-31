@@ -92,10 +92,13 @@ describe("Fotuto App", function () {
 		it("Should allow me to add devices", function () {
 			// Enter new device data
 			// Device fields
-			$("input[name='name']").sendKeys('Alarm Controller');
+			var input_name = $("input[name='name']");
+			input_name.sendKeys('Alarm Controller');
 			// TODO: Slug field should generated automatically and it should not appear here
-			$("input[name='slug']").sendKeys('alarm-controller');
-			$("input[name='address']").sendKeys('0001');
+			var input_slug = $("input[name='slug']");
+			input_slug.sendKeys('alarm-controller');
+			var input_address = $("input[name='address']");
+			input_address.sendKeys('0001');
 
 			// Submit form
 			var add_button = element(by.buttonText('Add'));
@@ -106,8 +109,20 @@ describe("Fotuto App", function () {
 			expect(list_devices.count()).toBe(1);
 			expect(list_devices.first().getText()).toBe('Alarm Controller');
 
-			// TODO: Form is cleared
-			// TODO: Add another device
+			// Form is cleared
+			// Add another device
+			input_name.sendKeys('Door Sensor 1');
+			// TODO: Slug field should generated automatically and it should not appear here
+			input_slug.sendKeys('door-sensor-1');
+			input_address.sendKeys('0002');
+
+			// Submit form
+			add_button.click();
+
+			// Device now appears on the list
+			expect(list_devices.count()).toBe(2);
+			expect(list_devices.first().getText()).toBe('Door Sensor 1');
+
 			// TODO: Allow to inactive devices
 			// TODO: Click on Next step button
 			// TODO: Now show the wizard step 2

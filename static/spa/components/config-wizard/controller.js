@@ -8,9 +8,10 @@ fotuto.controller('DeviceController', ['$scope', function ($scope) {
 	 * @type {Array}
 	 */
 	$scope.devices = [];
+	$scope.device = {};
 
 	$scope.add = function (device) {
 		$scope.devices.unshift(device);
-		// TODO: clear form
+		$scope.device = {};
 	}
 }]);
