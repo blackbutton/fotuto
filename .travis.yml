@@ -48,7 +48,7 @@ before_script:
 
 script:
   - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
-  - protractor static/spa/protractor.conf.js --capabilities.browserName phantomjs
+  - protractor static/spa/protractor.conf.js --capabilities.browserName firefox
   - coverage run --source=fotuto manage.py test
 
 after_success:
