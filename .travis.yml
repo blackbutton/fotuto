@@ -29,8 +29,11 @@ before_script:
   - cp fotuto/settings_local.py.example fotuto/settings_local.py
   - export DJANGO_SETTINGS_MODULE=fotuto.settings
   - python manage.py migrate --noinput
+  - npm install -g karma-cli
   - npm install -g bower
   - bower install
+  - node_modules/protractor/bin/webdriver-manager update
+  - python manage.py runserver &
 
   # Configure firefox for Selenium tests
   - "export DISPLAY=:99.0"
@@ -40,6 +43,8 @@ before_script:
 
 script:
   - coverage run --source=fotuto manage.py test
+  - karma start fotuto/static/spa/karma.conf.js --single-run --browsers PhantomJS
+  - protractor fotuto/static/spa/protractor.conf.js --single-run --browsers PhantomJS
 
 after_success:
   - codecov
