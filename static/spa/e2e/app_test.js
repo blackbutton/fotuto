@@ -62,6 +62,8 @@ describe("Fotuto App", function () {
 	// Start wizard
 	// Now user is on wizard step 1
 	describe("Given I am started the first step of the configuration wizard", function () {
+		var list_devices = element.all(by.repeater('device in devices'));
+
 		beforeEach(function () {
 			// TODO: Login as an operator
 			// Assemble
@@ -82,7 +84,6 @@ describe("Fotuto App", function () {
 			expect(page_subheading.getText()).toBe('Devices');
 
 			// Notice there is an empty list of devices
-			var list_devices = element.all(by.repeater('device in devices'));
 			expect(list_devices.count()).toBe(0);
 
 			// TODO: Notice Device form
@@ -92,40 +93,46 @@ describe("Fotuto App", function () {
 		it("Should allow me to add devices", function () {
 			// Enter new device data
 			// Device fields
-			var input_name = $("input[name='name']");
-			input_name.sendKeys('Alarm Controller');
-			// TODO: Slug field should generated automatically and it should not appear here
-			var input_slug = $("input[name='slug']");
-			input_slug.sendKeys('alarm-controller');
-			var input_address = $("input[name='address']");
-			input_address.sendKeys('0001');
-
-			// Submit form
-			var add_button = element(by.buttonText('Add'));
-			add_button.click();
+			var device = {
+				'name': 'Alarm Controller',
+				'slug': 'alarm-controller',
+				'address': '0001'
+			};
+			add_device(device);
 
 			// Device now appears on the list
-			var list_devices = element.all(by.repeater('device in devices'));
 			expect(list_devices.count()).toBe(1);
-			expect(list_devices.first().getText()).toBe('Alarm Controller');
+			expect(list_devices.first().getText()).toBe(device.name);
 
 			// Form is cleared
 			// Add another device
-			input_name.sendKeys('Door Sensor 1');
-			// TODO: Slug field should generated automatically and it should not appear here
-			input_slug.sendKeys('door-sensor-1');
-			input_address.sendKeys('0002');
-
-			// Submit form
-			add_button.click();
+			device = {
+				'name': 'Door Sensor 1',
+				'slug': 'door-sensor-1',
+				'address': '0002'
+			};
+			add_device(device);
 
 			// Device now appears on the list
 			expect(list_devices.count()).toBe(2);
-			expect(list_devices.first().getText()).toBe('Door Sensor 1');
+			expect(list_devices.first().getText()).toBe(device.name);
 
 			// TODO: Allow to inactive devices
-			// TODO: Click on Next step button
+
+			// TODO: Refresh the page to be sure the added devices still there
+			// This has been commented because mocked devices object in `ngRoute.run` (in app/fotuto-app.js), turns empty on
+			//     browser refresh
+			// browser.driver.navigate().refresh();
+			// Device appears appears again
+			// expect(list_devices.count()).toBe(2);
+			// expect(list_devices.first().getText()).toBe('Door Sensor 1');
+
+			// Click on Next step button
+			//var next_button = element(by.buttonText('Next'));
+			//next_button.click();
+
 			// TODO: Now show the wizard step 2
+			// TODO: Go back to be sure added items appears in the list
 		});
 	});
 
@@ -157,5 +164,19 @@ describe("Fotuto App", function () {
 	 it("After some seconds the mimics var values changed", function () {
 
 	 });*/
+
+	var add_device = function(device) {
+		var input_name = $("input[name='name']");
+		input_name.sendKeys(device.name);
+		// TODO: Slug field should generated automatically and it should not appear here
+		var input_slug = $("input[name='slug']");
+		input_slug.sendKeys(device.slug);
+		var input_address = $("input[name='address']");
+		input_address.sendKeys(device.address);
+
+		// Submit form
+		var add_button = element(by.buttonText('Add'));
+		add_button.click();
+	}
 
 });
