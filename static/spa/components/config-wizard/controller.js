@@ -1,4 +1,4 @@
-fotuto.controller('DeviceController', ['$scope', function ($scope) {
+fotuto.controller('DeviceController', ['$scope', '$http', function ($scope, $http) {
 
 	/**
 	 * Devices
@@ -7,11 +7,22 @@ fotuto.controller('DeviceController', ['$scope', function ($scope) {
 	 *
 	 * @type {Array}
 	 */
-	$scope.devices = [];
 	$scope.device = {};
+	$scope.devices = [];
 
-	$scope.add = function (device) {
-		$scope.devices.unshift(device);
-		$scope.device = {};
+	$http.get('/api/devices/').success(function (data) {
+		$scope.devices = data.results;
+	});
+
+	$scope.add = function () {
+		$http.post('/api/devices/', $scope.device)
+			.success(function (data) {
+				$scope.result = data;
+				$scope.devices.unshift($scope.device);
+				$scope.device = {};
+			})
+			.error(function (data) {
+				$scope.error = data;
+			});
 	}
 }]);
