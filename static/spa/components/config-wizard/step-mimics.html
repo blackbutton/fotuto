@@ -1,4 +1,4 @@
-<div id="ConfigWizardStepMimicsView"><!-- TODO: ng-controller="MimicController" -->
+<div id="ConfigWizardStepMimicsView" ng-controller="MimicController">
 	<h2>Configuration Wizard</h2>
 	<h3>Mimics</h3>
 	<fieldset>
@@ -18,9 +18,10 @@
 				<input type="number" name="y" id="id_y" ng-model="mimic.y"/>
 			</p>
 			<p>
+				<!-- TODO: Variable should display the device name -->
 				<label for="id_vars">Variables</label>
 				<select name="vars" id="id_vars" ng-model="mimic.vars" multiple="multiple">
-					<option value="{{ vars.id }}" ng-repeat="var in vars">{{ var.name }}</option>
+					<option value="{{ var.id }}" ng-repeat="var in vars">{{ var.name }}</option>
 				</select>
 			</p>
 			<input type="submit" value="Save"/>

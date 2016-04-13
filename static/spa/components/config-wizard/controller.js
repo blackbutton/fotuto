@@ -90,3 +90,46 @@ fotuto.controller('SceneController', ['$scope', '$http', function ($scope, $http
 			});
 	}
 }]);
+
+fotuto.controller('MimicController', ['$scope', '$http', function ($scope, $http) {
+
+	/**
+	 * Mimics
+	 *
+	 * Example mimic: {"name": "Door Sensor", "window": 1, "vars": [1,2], 'x': 100, "y": 100}
+	 *
+	 * @type {Array}
+	 */
+	$scope.mimic = {};
+	$scope.mimics = [];
+	$scope.vars = []; // TODO: Optimize: vars should be shared with VarController
+	$scope.scenes = []; // TODO: Optimize: scenes should be shared with SceneController
+
+	$http.get('/api/mimics/').success(function (data) {
+		$scope.mimics = data.results;
+	});
+
+	// TODO: Optimize: vars are shared this request don't needed
+	$http.get('/api/vars/').success(function (data) {
+		$scope.vars = data.results;
+	});
+
+	// TODO: Optimize: scenes are shared this request don't needed
+	$http.get('/api/windows/').success(function (data) {
+		$scope.scenes = data.results;
+	});
+
+	// TODO: Implement update mimic
+
+	$scope.save = function () {
+		$http.post('/api/mimics/', $scope.mimic)
+			.success(function (data) {
+				$scope.result = data;
+				$scope.mimics.unshift($scope.mimic);
+				$scope.mimic = {};
+			})
+			.error(function (data) {
+				$scope.error = data;
+			});
+	}
+}]);
