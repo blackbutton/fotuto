@@ -1,9 +1,9 @@
-<div id="ConfigWizardStepVarsView"><!-- TODO: ng-controller="VarsController" -->
+<div id="ConfigWizardStepVarsView" ng-controller="VarController">
 	<h2>Configuration Wizard</h2>
 	<h3>Variables</h3>
 	<fieldset>
 		<legend>Add new Variable</legend>
-		<form name="VarAddForm" novalidate> <!-- TODO: ng-submit="add(var)" -->
+		<form name="VarAddForm" novalidate ng-submit="add(var)">
 			<!-- TODO: Implement advanced options to display/hide slug, model, description -->
 			<p>
 				<label for="id_device">Device</label>
@@ -28,10 +28,11 @@
 		<li ng-repeat="device in devices">
 			{{ device.name }}
 			<ul>
-				<li ng-repeat="var in vars | filter:device.id">{{ var.name }}</li>
+				<li ng-repeat="var in vars | filter: {device: device.id}">{{ var.name }}</li>
 			</ul>
 		</li>
 	</ul>
 
+	<a href="#/config/steps/1">&laquo; Back</a> |
 	<a href="#/config/steps/3">Next &raquo;</a>
 </div>
