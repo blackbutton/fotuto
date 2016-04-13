@@ -61,3 +61,32 @@ fotuto.controller('VarController', ['$scope', '$http', function ($scope, $http) 
 			});
 	}
 }]);
+
+fotuto.controller('SceneController', ['$scope', '$http', function ($scope, $http) {
+
+	/**
+	 * Scenes
+	 *
+	 * Example : {'title':'Alarm System', 'slug': 'alarm-system', 'description': 'Some descripion'}
+	 *
+	 * @type {Array}
+	 */
+	$scope.scene = {};
+	$scope.scenes = [];
+
+	$http.get('/api/windows/').success(function (data) {
+		$scope.scenes = data.results;
+	});
+
+	$scope.add = function () {
+		$http.post('/api/windows/', $scope.scene)
+			.success(function (data) {
+				$scope.result = data;
+				$scope.scenes.unshift($scope.scene);
+				$scope.scene = {};
+			})
+			.error(function (data) {
+				$scope.error = data;
+			});
+	}
+}]);
