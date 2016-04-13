@@ -14,6 +14,9 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 		.when('/config/steps/2', {
 			templateUrl: 'components/config-wizard/step-vars.html',
 		})
+		.when('/config/steps/3', {
+			templateUrl: 'components/config-wizard/step-scene.html',
+		})
 		.otherwise({
 			redirectTo: '/config/intro'
 		});
