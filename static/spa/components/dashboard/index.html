@@ -4,7 +4,8 @@
 	<ul>
 		<li ng-repeat="scene in scenes"><a href="" ng-click="showScene(scene.id)">{{ scene.title }}</a></li>
 	</ul>
-	<div class="update">Updated <span class="last-update">2015-04-13 @ 10:24</span>
+	<!-- TODO: Convert the updater in a directive -->
+	<div class="update">Updated <span class="last-update">{{ last_update }}</span>
 		<span class="updating">Updating...</span></div>
 	<ul class="toolbar">
 		<li class="active"><a href="#">Mimics</a></li>
