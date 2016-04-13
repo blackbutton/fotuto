@@ -33,7 +33,13 @@ class VarSerializer(serializers.ModelSerializer):
         read_only_fields = ('slug', 'var_type_display')
 
     def validate(self, data):
-        data['slug'] = slugify(data['name'])
+        # TODO: This logic should reside in model save method
+        name_slug = slugify(data['name'])
+        data['slug'] = name_slug
+        i = 1
+        while Var.objects.filter(slug=data['slug']).count() > 0:
+            data['slug'] = '{}-{}'.format(name_slug, i)
+            i += 1
         return data
 
     def get_var_type_display(self, obj):
