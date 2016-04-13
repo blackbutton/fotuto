@@ -1,0 +1,20 @@
+<div id="DashboardView">
+	<h2>Dashboard</h2>
+	<ul>
+		<li ng-repeat="scene in scenes"><a href="#/scene/{{ scene.id }}">{{ scene.title }}</a></li>
+	</ul>
+	<div class="update">Updated <span class="last-update">2015-04-13 @ 10:24</span> <span class="updating">Updating...</span></div>
+	<ul class="toolbar">
+		<li class="active"><a href="#">Mimics</a></li>
+		<li><a href="#">History</a></li>
+		<li><a href="#">Edit</a></li>
+	</ul>
+	<div class="mimics">
+		<div ng-repeat="mimic in window.mimics" class="{{ mimic.slug }}">
+			<h3>{{ mimic.name }}</h3>
+			<ul>
+				<li ng-repeat="var in mimic.vars" class="{{ var.slug }}">{{ var.name }} <span class="value">{{ var.value }}</span></li>
+			</ul>
+		</div>
+	</div>
+</div>

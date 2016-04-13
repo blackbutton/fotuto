@@ -3,7 +3,11 @@ var fotuto = angular.module('fotuto', ['ngRoute', 'ngCookies', 'fotuto.auth.dire
 // TODO: Refactor urls by components
 fotuto.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
-	// Component: config-wizard
+		// Component: Dashboard
+		.when('/dashboard', {
+			templateUrl: 'components/dashboard/index.html'
+		})
+		// Component: config-wizard
 		.when('/config/intro', {
 			templateUrl: 'components/config-wizard/intro.html'
 		})
@@ -21,7 +25,7 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: 'components/config-wizard/step-mimics.html',
 		})
 		.otherwise({
-			redirectTo: '/config/intro'
+			redirectTo: '/dashboard'
 		});
 }]);
 
