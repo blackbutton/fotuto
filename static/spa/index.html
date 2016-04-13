@@ -4,8 +4,29 @@
 	<title>Fotuto</title>
 </head>
 <body ng-app="fotuto">
+<a href="#/dashboard">Dashboard</a>
+<span>Alerts <sup class="alert-unread">1</sup></span>
 <div login></div>
+<ul class="top-menu">
+	<li><a href="#">My account</a></li>
+	<li><a href="#">Logout</a></li>
+	<li>Admin</li>
+	<li><a href="#/config/intro">Configure</a></li>
+	<li><a href="#">Users</a></li>
+	<li><a href="/admin/">Administration</a></li>
+</ul>
 <div ng-view></div>
+<footer>
+	<p>Powered by <strong><a href="https://github.com/cesarcruz/fotuto">Fotuto</a></strong></p>
+	<p><a href="https://github.com/cesarcruz/fotuto">Fotuto</a> is a free open source web SCADA to monitor variables
+		behaviour in real time.</p>
+	<small>
+		<a href="https://github.com/cesarcruz/fotuto">Github</a>
+		<a href="https://www.facebook.com/fotutoscada">Facebook</a>
+		<a href="https://twitter.com/fotuto_scada">Twitter</a>
+		<a href="mailto:fotutoscada@gmail.com">Email</a>
+	</small>
+</footer>
 <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="../bower_components/angular-cookies/angular-cookies.js"></script>
