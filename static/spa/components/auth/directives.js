@@ -10,7 +10,7 @@ angular.module('fotuto.auth.directives', [])
 						"password": scope.user.password
 					};
 					// Clear current token
-					delete $http.defaults.headers.common['Authorization'];
+					//delete $http.defaults.headers.common['Authorization'];
 					// Request for new token
 					$http.post("/api/token/", user_data)
 						.success(function (response) {

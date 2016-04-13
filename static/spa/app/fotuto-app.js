@@ -21,9 +21,10 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 
 fotuto.run(function ($rootScope, $log, $http, $cookies) {
 	// Add header param in url requests to use CSRF token
+	$http.defaults.xsrfCookieName = 'csrftoken';
+	$http.defaults.xsrfHeaderName = 'X-CSRFToken';
 	csrftoken = $cookies.get('csrftoken');
 	if (csrftoken) {
 		$http.defaults.headers.common['Authorization'] = 'Token ' + csrftoken;
 	}
 });
-
