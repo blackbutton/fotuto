@@ -1,4 +1,4 @@
-var fotuto = angular.module('fotuto', ['ngRoute', 'ngCookies', 'ngMaterial']);
+var fotuto = angular.module('fotuto', ['ngRoute', 'ngCookies', 'ngMaterial', 'ngSanitize']);
 
 // TODO: Refactor urls by components
 fotuto.config(['$routeProvider', function ($routeProvider) {
