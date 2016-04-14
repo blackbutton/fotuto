@@ -18,11 +18,12 @@ fotuto.controller('DashboardController', ['$scope', '$http', '$interval', '$filt
 			$scope.scene = $filter('filter')($scope.scenes, {id: scene_id}, true)[0];
 			$http.get('/api/mimics/?window=' + scene_id).success(function (data) {
 				$scope.scene.mimics = data.results;
+				$scope.init_updates();
 			});
 		};
 
 		// Update values
-		if ($scope.scene) {
+		$scope.init_updates = function () {
 			$interval(function () {
 				// TODO: Display/hide the "updating..." indicator
 				/* TODO: Optimize: it should be better if api provide the endpoint `/api/windows/<window.pk>/values/` with in
