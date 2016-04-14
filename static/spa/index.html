@@ -41,8 +41,8 @@
 					My Account
 				</md-button>
 			</md-menu-item>
-			<md-menu-item>
-				<md-button>
+			<md-menu-item ng-controller="AuthController">
+				<md-button ng-click="showLogin();">
 					<md-icon>power_settings_new</md-icon>
 					Logout
 				</md-button>
@@ -53,7 +53,6 @@
 
 <div flex layout="row">
 	<md-content flex layout-padding id="content">
-		<div login></div>
 		<div ng-view></div>
 	</md-content>
 
@@ -109,7 +108,7 @@
 <script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
 <script type="text/javascript" src="../bower_components/angular-material/angular-material.js"></script>
 <script type="text/javascript" src="app/fotuto-app.js"></script>
-<script type="text/javascript" src="components/auth/directives.js"></script>
+<script type="text/javascript" src="components/auth/controller.js"></script>
 <script type="text/javascript" src="components/config-wizard/controller.js"></script>
 <script type="text/javascript" src="components/dashboard/controller.js"></script>
 </body>
