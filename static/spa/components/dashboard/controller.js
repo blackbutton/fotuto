@@ -24,7 +24,8 @@ fotuto.controller('DashboardController', ['$scope', '$http', '$interval', '$filt
 
 		// Update values
 		$scope.init_updates = function () {
-			$interval(function () {
+			$interval.cancel($scope.interval_promise);
+			$scope.interval_promise = $interval(function () {
 				// TODO: Display/hide the "updating..." indicator
 				/* TODO: Optimize: it should be better if api provide the endpoint `/api/windows/<window.pk>/values/` with in
 				 results field the list of variable values i.e. [{"slug": "some-var", "value": 0.5}]
