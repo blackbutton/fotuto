@@ -10,7 +10,7 @@ class Mimic(models.Model):
     window = models.ForeignKey(Window, related_name='mimics')
     x = models.SmallIntegerField(null=True, blank=True, default=0)
     y = models.SmallIntegerField(null=True, blank=True, default=0)
-    # TODO: Add image field
+    graphic = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.name
