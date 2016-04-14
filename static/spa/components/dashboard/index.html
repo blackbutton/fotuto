@@ -29,6 +29,7 @@
 				<div class="mimics md-padding">
 					<div ng-repeat="mimic in scene.mimics" class="{{ mimic.slug }}">
 						<h3>{{ mimic.name }}</h3>
+						<div ng-bind-html="mimic.graphic | unsafe"></div>
 						<ul>
 							<li ng-repeat="var in mimic.vars" class="{{ var.slug }}">{{ var.name }}
 								<span class="value">{{ var.value }}</span>
