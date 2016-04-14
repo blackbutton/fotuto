@@ -11,7 +11,7 @@ class MimicPostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Mimic
-        fields = ('id', 'name', 'window', 'vars', 'x', 'y')
+        fields = ('id', 'name', 'window', 'vars', 'graphic', 'x', 'y')
 
 
 class MimicSerializer(serializers.ModelSerializer):
