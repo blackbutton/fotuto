@@ -18,6 +18,10 @@ md-dialog md-input-container {
 	margin-bottom: 0;
 }
 
+.update {
+	padding: 18px 10px;
+}
+
 .updating {
 	background-color: orangered;
 	display: inline-block;

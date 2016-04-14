@@ -7,25 +7,26 @@
 		<!-- TODO: Convert the updater in a directive -->
 		<div class="update">
 			<span class="updating" ng-show="updating">Updating...</span>
-			Updated <span class="last-update">{{ last_update | date:'yyyy-MM-dd @ HH:mm:ss' }}</span>
+			Updated: <span class="last-update">{{ last_update | date:'yyyy-MM-dd @ HH:mm:ss' }}</span>
 		</div>
+
+		<md-button>
+			<md-icon>toys</md-icon>
+			Mimics
+		</md-button>
+		<md-button>
+			<md-icon>history</md-icon>
+			History
+		</md-button>
+		<md-button>
+			<md-icon>edit</md-icon>
+			Edit
+		</md-button>
 	</div>
 	<md-tabs md-dynamic-height md-border-bottom>
 		<md-tab label="{{ scene.title }}" ng-click="showScene(scene.id)" ng-repeat="scene in scenes">
-			<md-content class="md-padding">
-				<ul class="toolbar">
-					<li class="active"><a href="#">
-						<md-icon>art_track</md-icon>
-						Mimics</a></li>
-					<li><a href="#">
-						<md-icon>history</md-icon>
-						History</a></li>
-					<li><a href="#">
-						<md-icon>edit</md-icon>
-						Edit</a></li>
-				</ul>
-
-				<div class="mimics">
+			<md-content>
+				<div class="mimics md-padding">
 					<div ng-repeat="mimic in scene.mimics" class="{{ mimic.slug }}">
 						<h3>{{ mimic.name }}</h3>
 						<ul>
