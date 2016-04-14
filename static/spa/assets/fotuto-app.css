@@ -1,0 +1,39 @@
+sup.notification {
+	background-color: orangered;
+	color: white;
+	padding: 2px 4px;
+	font-weight: bold;
+	border-radius: 2px;
+	position: absolute;
+	line-height: 100%;
+	margin-left: -8px;
+}
+
+footer {
+	color: dimgray;
+	background: lightgray;
+	font-size: 90%;
+	padding: 4px;
+}
+
+footer a {
+	font-size: 110%;
+	color: dimgray;
+	padding: 2px !important;
+}
+
+footer .facebook:hover {
+	color: #3b5998;
+}
+
+footer .twitter:hover {
+	color: #0084b4;
+}
+
+footer .github:hover {
+	color: black;
+}
+
+footer .email:hover {
+	color: forestgreen;
+}

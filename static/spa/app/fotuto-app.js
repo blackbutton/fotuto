@@ -3,7 +3,7 @@ var fotuto = angular.module('fotuto', ['ngRoute', 'ngCookies', 'ngMaterial', 'fo
 // TODO: Refactor urls by components
 fotuto.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
-		// Component: Dashboard
+	// Component: Dashboard
 		.when('/dashboard', {
 			templateUrl: 'components/dashboard/index.html'
 		})
@@ -28,6 +28,16 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 			redirectTo: '/dashboard'
 		});
 }]);
+
+fotuto.config(function ($mdThemingProvider) {
+	$mdThemingProvider.theme('default')
+		.primaryPalette('light-green')
+		.accentPalette('blue');
+});
+
+fotuto.config(function($mdIconProvider) {
+  $mdIconProvider.defaultIconSet('assets/midi/mdi.svg')
+});
 
 fotuto.run(function ($rootScope, $log, $http, $cookies) {
 	// Add header param in url requests to use CSRF token

@@ -1,6 +1,15 @@
 <div id="DashboardView" ng-controller="DashboardController">
-	<h2>Dashboard</h2>
+	<h2 class="md-title">Dashboard</h2>
 	<!-- TODO: Display scenes as tabs, if there is one scene do not display tabs -->
+
+	<md-tabs md-dynamic-height md-border-bottom>
+		<md-tab label="{{ scene.title }}" ng-click="showScene(scene.id)" ng-repeat="scene in scenes">
+			<md-content class="md-padding">
+				jaja
+			</md-content>
+		</md-tab>
+	</md-tabs>
+
 	<ul>
 		<li ng-repeat="scene in scenes"><a href="" ng-click="showScene(scene.id)">{{ scene.title }}</a></li>
 	</ul>
@@ -8,9 +17,9 @@
 	<div class="update">Updated <span class="last-update">{{ last_update | date:'yyyy-MM-dd @ HH:mm:ss' }}</span>
 		<span class="updating" ng-show="updating">Updating...</span></div>
 	<ul class="toolbar">
-		<li class="active"><a href="#">Mimics</a></li>
-		<li><a href="#">History</a></li>
-		<li><a href="#">Edit</a></li>
+		<li class="active"><a href="#"><md-icon>art_track</md-icon> Mimics</a></li>
+		<li><a href="#"><md-icon>history</md-icon> History</a></li>
+		<li><a href="#"><md-icon>edit</md-icon> Edit</a></li>
 	</ul>
 	<div class="mimics">
 		<div ng-repeat="mimic in scene.mimics" class="{{ mimic.slug }}">
