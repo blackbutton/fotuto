@@ -16,11 +16,13 @@ describe("Fotuto App", function () {
 		// TODO: display login form first
 		//Assert
 		// Since there is no any windows, the configuration wizard intro is shown
-		it("Should redirect index.html to index.html#/config/intro", function () {
+		it("Should redirect index.html to index.html#/dashboard", function () {
 			browser.getLocationAbsUrl().then(function (url) {
-				expect(url).toEqual('/config/intro');
+				expect(url).toEqual('/dashboard');
 			});
 		});
+
+		// TODO: If there no views configured redirect to config wizard
 	});
 
 	describe("Given I am access to the configuration wizard", function () {
@@ -37,7 +39,7 @@ describe("Fotuto App", function () {
 			expect(wizard_step_view.isPresent()).toBeTruthy();
 
 			// TODO: Should display Configuration in page title
-			// expect(browser.getTitle()).toMatch(/Fotuto - Configuration$/);
+			expect(browser.getTitle()).toContain("Configuration Wizard");
 
 			// Check page title as Configuration Wizard
 			var page_heading = element.all(by.tagName('h2')).first();
@@ -168,9 +170,6 @@ describe("Fotuto App", function () {
 	var add_device = function(device) {
 		var input_name = $("input[name='name']");
 		input_name.sendKeys(device.name);
-		// TODO: Slug field should generated automatically and it should not appear here
-		var input_slug = $("input[name='slug']");
-		input_slug.sendKeys(device.slug);
 		var input_address = $("input[name='address']");
 		input_address.sendKeys(device.address);
 
