@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="fotuto">
 <head>
-	<title>Fotuto</title>
+	<title ng-bind="'Fotuto | ' + title"></title>
 	<link href="../bower_components/angular-material/angular-material.css" rel="stylesheet"/>
 	<link href="../bower_components/material-design-icons/iconfont/material-icons.css" rel="stylesheet"/>
 	<link href="../bower_components/mdi/css/materialdesignicons.min.css" rel="stylesheet"/>
 	<link href="assets/fotuto-app.css" rel="stylesheet"/>
 </head>
-<body ng-app="fotuto" layout="column" ng-cloak>
+<body layout="column" ng-cloak>
 <md-toolbar layout="row" md-whiteframe="4">
-	<h2 class="md-toolbar-tools"><a href="#/dashboard">Fotuto</a></h2>
+	<h1 class="md-toolbar-tools"><a href="#/dashboard">Fotuto</a></h1>
 	<div flex></div>
 	<md-menu>
 		<md-button ng-click="$mdOpenMenu()">
