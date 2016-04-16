@@ -12,7 +12,7 @@
 	<h1 class="md-toolbar-tools"><a href="#/dashboard">Fotuto</a></h1>
 	<div flex></div>
 	<md-menu>
-		<md-button ng-click="$mdOpenMenu()">
+		<md-button ng-click="$mdOpenMenu()" class="user-menu-trigger">
 			<md-icon>account_circle</md-icon>
 		</md-button>
 		<md-menu-content>
@@ -42,7 +42,7 @@
 				</md-button>
 			</md-menu-item>
 			<md-menu-item ng-controller="AuthController">
-				<md-button ng-click="showLogin();">
+				<md-button ng-click="showLogin();" class="login-trigger">
 					<md-icon>power_settings_new</md-icon>
 					Logout
 				</md-button>

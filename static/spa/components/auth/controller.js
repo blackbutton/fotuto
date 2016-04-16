@@ -19,7 +19,8 @@ fotuto.controller('AuthController', ['$scope', '$mdDialog', function ($scope, $m
 					"password": $scope.user.password
 				};
 				// Clear current token
-				//delete $http.defaults.headers.common['Authorization'];
+				delete $http.defaults.headers.common['Authorization'];
+				$cookies.remove('csrftoken');
 				// Request for new token
 				$http.post("/api/token/", user_data)
 					.success(function (response) {

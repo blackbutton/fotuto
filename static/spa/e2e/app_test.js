@@ -28,6 +28,8 @@ describe("Fotuto App", function () {
 	describe("Given I am access to the configuration wizard", function () {
 		beforeEach(function () {
 			// TODO: Login as an operator
+			login(username='admin', password='123');
+
 			// Assemble
 			browser.get(base_url + '#/config/intro');
 		});
@@ -68,6 +70,7 @@ describe("Fotuto App", function () {
 
 		beforeEach(function () {
 			// TODO: Login as an operator
+			login('admin', '123');
 			// Assemble
 			browser.get(base_url + '#/config/steps/1');
 		});
@@ -100,6 +103,8 @@ describe("Fotuto App", function () {
 				'slug': 'alarm-controller',
 				'address': '0001'
 			};
+
+			login(username='admin', password='123');
 			add_device(device);
 
 			// Device now appears on the list
@@ -176,6 +181,21 @@ describe("Fotuto App", function () {
 		// Submit form
 		var add_button = element(by.buttonText('Add'));
 		add_button.click();
-	}
+	};
+
+	var login = function (username, password) {
+			// Display user menu
+			element.all(by.css(".user-menu-trigger")).click();
+			// TODO: Click on login menu
+			element.all(by.css(".login-trigger")).click();
+			// Fill login form
+			var input_username = $("input[name='username']");
+			input_username.sendKeys('admin');
+			var input_password = $("input[name='password']");
+			input_password.sendKeys('123');
+			// Submit form
+			var login_button = element(by.buttonText('Login'));
+			login_button.click();
+	};
 
 });
