@@ -11,6 +11,9 @@
 #   config : setup the requirements for tests
 #   clear  : remove tests setup
 #
+# Additionally you can pass a second parameter specifying the path to the python executable, if ommitted it will use
+# the path of the environment created during install.
+#
 # Usage:
 #
 # Config tests:
@@ -21,10 +24,16 @@
 #
 # And finally clean setup test
 #   ./spa-test.sh clean
+#
+# Using with other python executable:
+#
+#   ./spa-test.sh config python
+#   ./spa-test.sh config /home/fotuto/virtualenv/python2.7
 
 # Save fotuto project location
 DIR="$( dirname $( dirname "$0" ) )";
-PYTHON="$DIR/../env/bin/python";
+
+PYTHON=${2:-"$DIR/../env/bin/python"}
 
 if [ "$1" = config ]; then
     echo "Init config..."

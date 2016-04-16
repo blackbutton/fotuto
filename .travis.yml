@@ -49,11 +49,11 @@ before_script:
 script:
   - coverage run --source=fotuto manage.py test
   - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
-  - ./functional_tests/spa-test.sh config
+  - ./functional_tests/spa-test.sh config python
   - protractor static/spa/protractor.conf.js --capabilities.browserName firefox
 
 after_script:
-  - ./functional_tests/spa-test.sh clean
+  - ./functional_tests/spa-test.sh clean python
 
 after_success:
   - codecov
