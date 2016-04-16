@@ -19,11 +19,16 @@ module.exports = function(config) {
       '../bower_components/angular-mocks/angular-mocks.js',
       '../bower_components/angular-route/angular-route.js',
       '../bower_components/angular-cookies/angular-cookies.js',
+      '../bower_components/angular-material/angular-material.js',
+      '../bower_components/angular-animate/angular-animate.js',
+      '../bower_components/angular-aria/angular-aria.js',
+      '../bower_components/angular-sanitize/angular-sanitize.js',
       'app/**/*_test.js',
       'app/fotuto-app.js',
       'components/**/controller.js',
       'components/**/directives.js',
-      'components/**/*_test.js'
+      'components/**/*_test.js',
+      'components/**/*.html'
     ],
 
 
@@ -35,6 +40,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'components/**/*.html': ['ng-html2js']
     },
 
 
@@ -72,6 +78,19 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    plugins: [
+      'karma-jasmine',
+      'karma-html2js-preprocessor',
+      'karma-chrome-launcher',
+      'karma-ng-html2js-preprocessor'
+    ],
+
+    ngHtml2JsPreprocessor: {
+        // setting this option will create only a single module that contains templates
+        // from all the files, so you can load them all with module('templates')
+        moduleName: 'templates'
+    }
   })
-}
+};

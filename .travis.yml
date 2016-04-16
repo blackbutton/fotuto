@@ -34,6 +34,7 @@ before_script:
   - export DJANGO_SETTINGS_MODULE=fotuto.settings
   - python manage.py migrate --noinput
   - npm install karma-cli karma-jasmine karma-phantomjs-launcher
+  - npm install karma-ng-html2js-preprocessor --save-dev
   - npm install protractor@2
   - webdriver-manager update --standalone
   - npm install -g bower
