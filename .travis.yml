@@ -38,7 +38,6 @@ before_script:
   - webdriver-manager update --standalone
   - npm install -g bower
   - bower install
-  - chmod +x functional_tests/spa-tests.sh
   - python manage.py runserver &
 
   # Configure firefox for Selenium tests
@@ -50,11 +49,11 @@ before_script:
 script:
   - coverage run --source=fotuto manage.py test
   - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
-  - bash functional_tests/spa-tests.sh config
+  - ./functional_tests/spa-test.sh config
   - protractor static/spa/protractor.conf.js --capabilities.browserName firefox
 
 after_script:
-  - bash functional_tests/spa-tests.sh clean
+  - ./functional_tests/spa-test.sh clean
 
 after_success:
   - codecov
