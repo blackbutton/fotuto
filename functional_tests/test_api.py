@@ -496,6 +496,7 @@ class MimicAPITestCase(APITestCase):
         self.mimic_sensor_front_door_data = {
             'name': "Front Door Sensor",
             'window': self.window_security,
+            'graphic': "",
             'x': 100,
             'y': 0
         }
