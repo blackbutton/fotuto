@@ -80,13 +80,6 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-    plugins: [
-      'karma-jasmine',
-      'karma-html2js-preprocessor',
-      'karma-chrome-launcher',
-      'karma-ng-html2js-preprocessor'
-    ],
-
     ngHtml2JsPreprocessor: {
         // setting this option will create only a single module that contains templates
         // from all the files, so you can load them all with module('templates')
