@@ -18,7 +18,7 @@ fotuto.controller('DeviceController', ['$scope', '$http', function ($scope, $htt
 		$http.post('/api/devices/', $scope.device)
 			.success(function (data) {
 				$scope.result = data;
-				$scope.devices.unshift($scope.device);
+				$scope.devices.unshift(data);
 				$scope.device = {};
 			})
 			.error(function (data) {
