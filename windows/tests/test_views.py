@@ -154,4 +154,6 @@ class WindowDetailTest(TestCase):
     def test_context_timestamp(self):
         response = self.client.get(self.window.get_absolute_url())
         now = datetime.now().replace(microsecond=0)
-        self.assertDictContainsSubset({'timestamp': now}, response.context_data)
+        # Some time there is a second of difference but it is ok
+        delta = now - response.context_data['timestamp']
+        self.assertLessEqual(delta.total_seconds(), 1)
