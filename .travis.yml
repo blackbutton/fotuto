@@ -38,6 +38,7 @@ before_script:
   - webdriver-manager update --standalone
   - npm install -g bower
   - bower install
+  - chmod +x functional_tests/spa-tests.sh
   - python manage.py runserver &
 
   # Configure firefox for Selenium tests
