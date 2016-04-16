@@ -61,9 +61,11 @@ Front-end Tests
 ---------------
 Execute the following commands to configure and run SPA tests::
 
-   npm install karma karma-cli protractor
+   npm install karma karma-cli protractor screen
    webdriver-manager update
    python manage.py runserver
    karma fotuto/static/spa/karma.conf.js
+   ./functional_tests/spa-test.sh config
    protractor fotuto/static/spa/protractor.conf.js
+   ./functional_tests/spa-test.sh clean
 

@@ -47,9 +47,13 @@ before_script:
   - "java -jar selenium-server-standalone-2.52.0.jar > /dev/null &"
 
 script:
-  - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
-  - protractor static/spa/protractor.conf.js --capabilities.browserName firefox
   - coverage run --source=fotuto manage.py test
+  - karma start static/spa/karma.conf.js --single-run --browsers PhantomJS
+  - ./functional_tests/spa-tests.sh config
+  - protractor static/spa/protractor.conf.js --capabilities.browserName firefox
+
+after_script:
+  - ./functional_tests/spa-tests.sh clean
 
 after_success:
   - codecov
