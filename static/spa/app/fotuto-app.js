@@ -56,6 +56,6 @@ fotuto.run(['$rootScope', '$log', '$http', '$cookies', function ($rootScope, $lo
 
 	// Set the page title
 	$rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-		$rootScope.title = current.$$route.title;
+		$rootScope.title = current.title;
 	});
 }]);
