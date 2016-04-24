@@ -17,6 +17,7 @@
     "angular-cookies": "^1.5.3",
     "angular-material": "^1.0.7",
     "mdi": "^1.5.54",
-    "angular-sanitize": "^1.5.3"
+    "angular-sanitize": "^1.5.3",
+    "material-design-icons": "^2.2.3"
   }
 }
