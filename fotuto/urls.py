@@ -4,6 +4,10 @@ from rest_framework.authtoken import views
 
 from windows.views import api_root
 
+admin.site.site_title = "Fotuto Admin Site"
+admin.site.site_header = "Fotuto administration"
+admin.site.index_title = "Fotuto administration"
+
 urlpatterns = [
     url(r'^api/token/', views.obtain_auth_token, name='api-token'),
     url(r'^api/$', api_root),
