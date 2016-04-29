@@ -176,6 +176,8 @@ class GroupAPITestCase(APITestCase):
 
 
 class WindowAPITestCase(APITestCase):
+    maxDiff = None
+
     def setUp(self):
         self.window_1_data = {
             'title': "Some Windows",

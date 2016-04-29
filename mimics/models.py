@@ -20,6 +20,9 @@ class Mimic(models.Model):
     graphic = models.TextField(blank=True, help_text="Static graphic")
     description = models.TextField(max_length=255, blank=True)
 
+    class Meta:
+        ordering = ('x', 'y', 'name')
+
     def __unicode__(self):
         return self.name
 
