@@ -37,6 +37,15 @@ fotuto.controller('DashboardController', ['$scope', '$http', '$interval', '$filt
 					$scope.scene.mimics.forEach(function (mimic, index) {
 						mimic.vars.forEach(function (variable, index) {
 							variable.value = $filter('filter')(response.data.results, {slug: variable.slug}, true)[0].value;
+							var var_rules = $filter('filter')(mimic.var_rules, {var: variable.id}, true)[0];
+							var_rules.rules.forEach(function (rule, index) {
+								var operation = new Function(rule.params.split(','), rule.operation);
+								value = operation(variable.value, var_rules.max);
+								d3.select('.' + variable.slug).attr(rule.attr, value);
+							}
+
+							);
+
 						});
 					});
 

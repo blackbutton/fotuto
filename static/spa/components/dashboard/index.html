@@ -26,16 +26,19 @@
 	<md-tabs md-dynamic-height md-border-bottom>
 		<md-tab label="{{ scene.title }}" ng-click="showScene(scene.id)" ng-repeat="scene in scenes">
 			<md-content>
-				<div class="mimics md-padding">
-					<div ng-repeat="mimic in scene.mimics" class="{{ mimic.slug }}">
-						<h3>{{ mimic.name }}</h3>
-						<div ng-bind-html="mimic.graphic | unsafe"></div>
-						<ul>
-							<li ng-repeat="var in mimic.vars" class="{{ var.slug }}">{{ var.name }}
-								<span class="value">{{ var.value }}</span>
-							</li>
-						</ul>
-					</div>
+				<div class="mimics md-padding" style="position:relative;min-height: 500px">
+						<div ng-repeat="mimic in scene.mimics" class="mimic {{ mimic.slug }}"
+						     style="position:absolute;top:{{ mimic.y }}px;left:{{ mimic.x }}px">
+							<h3>{{ mimic.name }}</h3>
+							<!-- TODO: use mimic.mimic_type instead of hardcoded svg -->
+							<!-- TODO: Iterate by each var_rule -->
+							<svg width="{{ mimic.width }}" height="{{ mimic.height }}" ng-bind-html="(mimic.graphic + mimic.var_rules[0].graphic) | unsafe"></svg>
+							<ul>
+								<li ng-repeat="var in mimic.vars" class="{{ var.slug }}">{{ var.name }}
+									<span class="value">{{ var.value }}</span>
+								</li>
+							</ul>
+						</div>
 				</div>
 			</md-content>
 		</md-tab>
