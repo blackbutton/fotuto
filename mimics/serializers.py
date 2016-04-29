@@ -3,7 +3,7 @@ from rest_framework.reverse import reverse as drf_reverse
 
 from vars.models import Var
 from vars.serializers import VarSerializer
-from .models import Mimic
+from .models import Mimic, MimicVar, Rule
 
 
 class MimicPostSerializer(serializers.ModelSerializer):
@@ -14,8 +14,21 @@ class MimicPostSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'window', 'vars', 'graphic', 'x', 'y')
 
 
+class RuleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rule
+
+
+class MimicVarSerializer(serializers.ModelSerializer):
+    rules = RuleSerializer(many=True)
+
+    class Meta:
+        model = MimicVar
+
+
 class MimicSerializer(serializers.ModelSerializer):
     vars = VarSerializer(many=True, read_only=True)
+    var_rules = MimicVarSerializer(source='mimicvar_set', many=True)
     links = serializers.SerializerMethodField()
 
     class Meta:
