@@ -5,8 +5,8 @@ from django.views.generic import CreateView
 from rest_framework import viewsets
 
 from .forms import MimicManageForm
-from .models import Mimic
-from .serializers import MimicSerializer, MimicPostSerializer
+from .models import Mimic, MimicVar
+from .serializers import MimicSerializer, MimicPostSerializer, MimicVarSerializer
 from windows.models import Window
 
 
@@ -43,3 +43,9 @@ class MimicViewSet(viewsets.ModelViewSet):
             return MimicPostSerializer
         else:
             return MimicSerializer
+
+
+class MimicVarViewSet(viewsets.ModelViewSet):
+    serializer_class = MimicVarSerializer
+    queryset = MimicVar.objects.all()
+    filter_fields = ('mimic',)

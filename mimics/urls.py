@@ -3,10 +3,11 @@ from django.views.generic import ListView, CreateView
 from rest_framework import routers
 
 from .models import Mimic
-from .views import MimicManageView, MimicViewSet
+from .views import MimicManageView, MimicViewSet, MimicVarViewSet
 
 router = routers.DefaultRouter()
 router.register(r'mimics', MimicViewSet)
+router.register(r'var_rules', MimicVarViewSet)
 
 urlpatterns = [
     url(r'^mimics/add/$', CreateView.as_view(model=Mimic), name="mimic_add"),
