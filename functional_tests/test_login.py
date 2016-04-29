@@ -1,3 +1,5 @@
+from unittest import skip
+
 from selenium.common.exceptions import NoSuchElementException
 from .base import FunctionalTest
 
@@ -23,6 +25,7 @@ class LoginTest(FunctionalTest):
         # Check user isn't logged in
         self.check_user_logged_out()
 
+    @skip("Not used anymore")
     def test_login(self):
         # A visitor logs with operator credential
         self.user_login(self.operator_data['username'], self.operator_data['password'])
