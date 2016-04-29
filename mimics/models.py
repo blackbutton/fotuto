@@ -43,11 +43,11 @@ class MimicVar(models.Model):
 class Rule(models.Model):
     """A formula to calculate an attribute value given the variable value"""
     attr = models.CharField(max_length=50, help_text="Attribute to modify")
-    operation = models.TextField(max_length=300,
+    operation = models.TextField(max_length=300, default="return value;",
         help_text="JavaScript function content returning the result to assign to the attribute, if the function require"
                   " params define it in the params field, for multiple sentences be sure to add an `;`"
     )
-    params = models.CharField(max_length=255, blank=True,
+    params = models.CharField(max_length=255, blank=True, default="value",
         help_text="A comma separated list of params to pass to the function with content specified in operation field"
     )
     description = models.TextField(max_length=255, blank=True)
