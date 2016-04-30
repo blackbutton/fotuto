@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^api/$', api_root),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^', include('django.contrib.auth.urls')),
-    url(r'^$', TemplateView.as_view(template_name='spa/index.html')),
+    url(r'^$', TemplateView.as_view(template_name='spa/index.html'), {'addons': ADDITIONAL_APPS}),
     # url(r'^', include('django.contrib.auth.urls')),
     url(r'^', include('operators.urls')),
     url(r'^', include('windows.urls')),

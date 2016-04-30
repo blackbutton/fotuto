@@ -3,9 +3,12 @@
 <head>
 	<title ng-bind="'Fotuto | ' + title"></title>
 	<link href="{{ STATIC_URL }}bower_components/angular-material/angular-material.css" rel="stylesheet"/>
-	<link href="{{ STATIC_URL }}bower_components/material-design-icons/iconfont/material-icons.css" rel="stylesheet"/>
 	<link href="{{ STATIC_URL }}bower_components/mdi/css/materialdesignicons.min.css" rel="stylesheet"/>
 	<link href="{{ STATIC_URL }}spa/assets/fotuto-app.css" rel="stylesheet"/>
+	{# TODO: Including a file doesn't solve the problem of duplicated or using diferent version of the files #}
+	{% for addon in addons %}
+		{% include addon|add:'/_header.html' %}
+	{% endfor %}
 </head>
 <body layout="column" ng-cloak>
 <md-toolbar layout="row" md-whiteframe="4">
@@ -101,6 +104,10 @@
 	<a href="https://twitter.com/fotuto_scada" title="Twitter" class="twitter"><i class="mdi mdi-twitter-box"></i></a>
 	<a href="mailto:fotutoscada@gmail.com" title="Email" class="email"><i class="mdi mdi-email"></i></a>
 </footer>
+
+{% for addon in addons %}
+	{% include addon|add:'/_footer_before.html' %}
+{% endfor %}
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-cookies/angular-cookies.js"></script>
@@ -109,10 +116,18 @@
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-material/angular-material.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/d3/d3.min.js"></script>
+{# TODO: Including a file doesn't solve the problem of duplicated assets or using diferent version of the files #}
+{% for addon in addons %}
+	{% include addon|add:'/_footer_middle.html' %}
+{% endfor %}
 <script type="text/javascript" src="{{ STATIC_URL }}spa/app/fotuto-app.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/auth/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/config-wizard/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/dashboard/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/dashboard/filters.js"></script>
+{# TODO: Including a file doesn't solve the problem of duplicated assets or using diferent version of the files #}
+{% for addon in addons %}
+	{% include addon|add:'/_footer_after.html' %}
+{% endfor %}
 </body>
 </html>
