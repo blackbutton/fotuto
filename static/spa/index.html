@@ -2,10 +2,10 @@
 <html ng-app="fotuto">
 <head>
 	<title ng-bind="'Fotuto | ' + title"></title>
-	<link href="../bower_components/angular-material/angular-material.css" rel="stylesheet"/>
-	<link href="../bower_components/material-design-icons/iconfont/material-icons.css" rel="stylesheet"/>
-	<link href="../bower_components/mdi/css/materialdesignicons.min.css" rel="stylesheet"/>
-	<link href="assets/fotuto-app.css" rel="stylesheet"/>
+	<link href="{{ STATIC_URL }}bower_components/angular-material/angular-material.css" rel="stylesheet"/>
+	<link href="{{ STATIC_URL }}bower_components/material-design-icons/iconfont/material-icons.css" rel="stylesheet"/>
+	<link href="{{ STATIC_URL }}bower_components/mdi/css/materialdesignicons.min.css" rel="stylesheet"/>
+	<link href="{{ STATIC_URL }}spa/assets/fotuto-app.css" rel="stylesheet"/>
 </head>
 <body layout="column" ng-cloak>
 <md-toolbar layout="row" md-whiteframe="4">
@@ -101,18 +101,18 @@
 	<a href="https://twitter.com/fotuto_scada" title="Twitter" class="twitter"><i class="mdi mdi-twitter-box"></i></a>
 	<a href="mailto:fotutoscada@gmail.com" title="Email" class="email"><i class="mdi mdi-email"></i></a>
 </footer>
-<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-<script type="text/javascript" src="../bower_components/angular-route/angular-route.js"></script>
-<script type="text/javascript" src="../bower_components/angular-cookies/angular-cookies.js"></script>
-<script type="text/javascript" src="../bower_components/angular-aria/angular-aria.js"></script>
-<script type="text/javascript" src="../bower_components/angular-animate/angular-animate.js"></script>
-<script type="text/javascript" src="../bower_components/angular-material/angular-material.js"></script>
-<script type="text/javascript" src="../bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-<script type="text/javascript" src="../bower_components/d3/d3.min.js"></script>
-<script type="text/javascript" src="app/fotuto-app.js"></script>
-<script type="text/javascript" src="components/auth/controller.js"></script>
-<script type="text/javascript" src="components/config-wizard/controller.js"></script>
-<script type="text/javascript" src="components/dashboard/controller.js"></script>
-<script type="text/javascript" src="components/dashboard/filters.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-route/angular-route.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-cookies/angular-cookies.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-aria/angular-aria.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-animate/angular-animate.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-material/angular-material.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/d3/d3.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/spa/app/fotuto-app.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/spa/components/auth/controller.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/spa/components/config-wizard/controller.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/spa/components/dashboard/controller.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}/spa/components/dashboard/filters.js"></script>
 </body>
 </html>

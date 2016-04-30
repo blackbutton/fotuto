@@ -6,29 +6,29 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 	// Component: Dashboard
 		.when('/dashboard', {
 			title: "Dashboard",
-			templateUrl: 'components/dashboard/index.html'
+			templateUrl: '/static/spa/components/dashboard/index.html'
 		})
 		// Component: config-wizard
 		.when('/config/intro', {
 			title: "Configuration Wizard",
-			templateUrl: 'components/config-wizard/intro.html'
+			templateUrl: '/static/spa/components/config-wizard/intro.html'
 		})
 		.when('/config/steps/1', {
 			title: "Configuration Wizard | Step 1",
-			templateUrl: 'components/config-wizard/step-devices.html',
+			templateUrl: '/static/spa/components/config-wizard/step-devices.html',
 			controller: 'DeviceController'
 		})
 		.when('/config/steps/2', {
 			title: "Configuration Wizard | Step 2",
-			templateUrl: 'components/config-wizard/step-vars.html',
+			templateUrl: '/static/spa/components/config-wizard/step-vars.html',
 		})
 		.when('/config/steps/3', {
 			title: "Configuration Wizard | Step 3",
-			templateUrl: 'components/config-wizard/step-scenes.html',
+			templateUrl: '/static/spa/components/config-wizard/step-scenes.html',
 		})
 		.when('/config/steps/4', {
 			title: "Configuration Wizard | Step 4",
-			templateUrl: 'components/config-wizard/step-mimics.html',
+			templateUrl: '/static/spa/components/config-wizard/step-mimics.html',
 		})
 		.otherwise({
 			redirectTo: '/dashboard'

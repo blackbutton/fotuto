@@ -2,7 +2,7 @@ fotuto.controller('AuthController', ['$scope', '$mdDialog', function ($scope, $m
 	$scope.showLogin = function () {
 		$mdDialog.show({
 			controller: 'LoginController',
-			templateUrl: 'components/auth/login-form.html',
+			templateUrl: '/static/spa/components/auth/login-form.html',
 			parent: angular.element(document.body),
 			clickOutsideToClose: true
 		});
