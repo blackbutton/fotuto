@@ -1,12 +1,14 @@
 import json
+from unittest import TestCase
 
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.core.urlresolvers import resolve
 from rest_framework import status
 from rest_framework.authtoken.models import Token
-from rest_framework.test import APITestCase
+from rest_framework.test import APITestCase, APIRequestFactory, force_authenticate
 
+from fotuto.urls import api_root
 from mimics.models import Mimic, MimicVar, Rule
 from vars.models import Device, Var
 from windows.models import Window
@@ -25,6 +27,21 @@ def add_mimic_var(mimic, var):
     rule = Rule.objects.create(attr='y')
     var_rules.rules.add(rule)
     return var_rules
+
+
+class APIRootURLTestCase(TestCase):
+    def test_api_root_return_correct_urls(self):
+        factory = APIRequestFactory()
+        user = User.objects.create_user(username='maximo')
+        request = factory.get('/api/groups/', )
+        force_authenticate(request, user=user)
+        response = api_root(request=request)
+        expected_json = {
+            'windows': 'http://testserver/api/windows/',
+            'devices': 'http://testserver/api/devices/',
+            'users': 'http://testserver/api/users/',
+        }
+        self.assertDictEqual(response.data, expected_json)
 
 
 class APIAuthentication(APITestCase):

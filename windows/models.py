@@ -14,5 +14,6 @@ class Window(models.Model):
     def __unicode__(self):
         return self.title
 
-    def get_absolute_url(self):
-        return reverse('window_details', args=(self.slug,))
+    # TODO:
+    # def get_absolute_url(self):
+    #     return reverse('window_details', args=(self.slug,))

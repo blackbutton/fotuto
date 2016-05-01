@@ -1,5 +1,5 @@
 describe("Fotuto App", function () {
-	var base_url = 'static/spa/index.html';
+	var base_url = '/';
 
 	// TODO: Add alternative flows
 
@@ -16,9 +16,9 @@ describe("Fotuto App", function () {
 		// TODO: display login form first
 		//Assert
 		// Since there is no any windows, the configuration wizard intro is shown
-		it("Should redirect index.html to index.html#/dashboard", function () {
+		it("Should redirect index.html to index.html#/mimics", function () {
 			browser.getLocationAbsUrl().then(function (url) {
-				expect(url).toEqual('/dashboard');
+				expect(url).toEqual('/mimics');
 			});
 		});
 

@@ -81,9 +81,12 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     ngHtml2JsPreprocessor: {
-        // setting this option will create only a single module that contains templates
-        // from all the files, so you can load them all with module('templates')
-        moduleName: 'templates'
+      // setting this option will create only a single module that contains templates
+      // from all the files, so you can load them all with module('templates')
+      moduleName: 'templates',
+      cacheIdFromPath: function(filepath) {
+        return '/static/spa/' + filepath;
+      }
     }
   })
 };
