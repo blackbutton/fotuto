@@ -40,6 +40,7 @@ class APIRootURLTestCase(TestCase):
             'windows': 'http://testserver/api/windows/',
             'devices': 'http://testserver/api/devices/',
             'users': 'http://testserver/api/users/',
+            'menus': 'http://testserver/api/menus/',
         }
         self.assertDictEqual(response.data, expected_json)
 
@@ -70,18 +71,6 @@ class APIAuthentication(APITestCase):
         header = {'HTTP_AUTHORIZATION': 'Token {}'.format(self.token)}
         response = self.client.get('/api/', {}, **header)
         self.assertEqual(response.status_code, 200, "REST token-auth failed")
-
-    def test_root_endpoints(self):
-        """Tests for default root endpoints"""
-        header = {'HTTP_AUTHORIZATION': 'Token {}'.format(self.token)}
-        response = self.client.get('/api/', {}, **header)
-        # TODO: This also should display devices
-        default_endpoints = {
-            "windows": "http://testserver/api/windows/",
-            "devices": "http://testserver/api/devices/",
-            "users": "http://testserver/api/users/",
-        }
-        self.assertDictEqual(response.data, default_endpoints)
 
 
 class UserAPITestCase(APITestCase):
