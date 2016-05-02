@@ -21,10 +21,8 @@
 		</md-button>
 		<md-menu-content>
 			<md-menu-item>
-				<md-button href="#/config/intro">
-					<md-icon>build</md-icon>
-					Configure
-				</md-button>
+			<!-- TODO: Allow to wrap menu item in md-menu-item -->
+				<f-menu position="user"></f-menu>
 			</md-menu-item>
 			<md-menu-item>
 				<md-button>
@@ -126,6 +124,8 @@
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/config-wizard/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/dashboard/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/dashboard/filters.js"></script>
+<!-- TODO: include footers and headers from all apps and document it-->
+{% include 'fmenus/_footer.html' %}
 {# TODO: Including a file doesn't solve the problem of duplicated assets or using diferent version of the files #}
 {% for addon in addons %}
 	{% include addon|add:'/_footer_after.html' %}

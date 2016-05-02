@@ -1,5 +1,5 @@
 <div id="DashboardView" ng-controller="DashboardController">
-	<div layout="row">
+	<div layout="row" layout-align="start center">
 		<h2 class="md-title">Dashboard</h2>
 		<!-- TODO: if there is one scene do not display tabs, just display the view title as a subitle at right side of the
 		Dashboard -->
@@ -10,14 +10,8 @@
 			Updated: <span class="last-update">{{ last_update | date:'yyyy-MM-dd @ HH:mm:ss' }}</span>
 		</div>
 
-		<md-button>
-			<md-icon>toys</md-icon>
-			Mimics
-		</md-button>
-		<md-button>
-			<md-icon>history</md-icon>
-			History
-		</md-button>
+		<!-- TODO: Move view menu to a general place -->
+		<f-menu position="view"></f-menu>
 		<md-button>
 			<md-icon>edit</md-icon>
 			Edit
