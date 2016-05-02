@@ -19,10 +19,12 @@ admin.site.index_title = "Fotuto administration"
 
 @api_view(['GET'])
 def api_root(request, format=None):
+    # TODO: Add endpoints from addons
     return Response({
         'windows': drf_reverse('window-list', request=request, format=format),
         'devices': drf_reverse('device-list', request=request, format=format),
         'users': drf_reverse('user-list', request=request, format=format),
+        'menus': drf_reverse('menuitem-list', request=request, format=format),
     })
 
 urlpatterns = [
@@ -34,6 +36,7 @@ urlpatterns = [
     url(r'^', include('windows.urls')),
     url(r'^', include('mimics.urls')),
     url(r'^', include('vars.urls')),
+    url(r'^', include('fmenus.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
 
