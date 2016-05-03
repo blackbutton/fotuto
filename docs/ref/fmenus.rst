@@ -1,4 +1,4 @@
-mimics package
+fmenus package
 ==============
 
 Subpackages
@@ -6,48 +6,56 @@ Subpackages
 
 .. toctree::
 
-    mimics.migrations
-    mimics.tests
+    fmenus.migrations
+    fmenus.tests
 
 Submodules
 ----------
 
-mimics.admin module
+fmenus.admin module
 -------------------
 
-.. automodule:: mimics.admin
+.. automodule:: fmenus.admin
     :members:
     :undoc-members:
     :show-inheritance:
 
-mimics.models module
---------------------
-
-.. automodule:: mimics.models
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mimics.serializers module
--------------------------
-
-.. automodule:: mimics.serializers
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-mimics.urls module
+fmenus.apps module
 ------------------
 
-.. automodule:: mimics.urls
+.. automodule:: fmenus.apps
     :members:
     :undoc-members:
     :show-inheritance:
 
-mimics.views module
+fmenus.models module
+--------------------
+
+.. automodule:: fmenus.models
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+fmenus.serializers module
+-------------------------
+
+.. automodule:: fmenus.serializers
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+fmenus.urls module
+------------------
+
+.. automodule:: fmenus.urls
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+fmenus.views module
 -------------------
 
-.. automodule:: mimics.views
+.. automodule:: fmenus.views
     :members:
     :undoc-members:
     :show-inheritance:
@@ -56,7 +64,7 @@ mimics.views module
 Module contents
 ---------------
 
-.. automodule:: mimics
+.. automodule:: fmenus
     :members:
     :undoc-members:
     :show-inheritance:

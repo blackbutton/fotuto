@@ -12,10 +12,18 @@ mimics.migrations.0001_initial module
     :undoc-members:
     :show-inheritance:
 
-mimics.migrations.0002_auto_20150227_0036 module
+mimics.migrations.0002_auto_20160429_1544 module
 ------------------------------------------------
 
-.. automodule:: mimics.migrations.0002_auto_20150227_0036
+.. automodule:: mimics.migrations.0002_auto_20160429_1544
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+mimics.migrations.0003_auto_20160429_2044 module
+------------------------------------------------
+
+.. automodule:: mimics.migrations.0003_auto_20160429_2044
     :members:
     :undoc-members:
     :show-inheritance:

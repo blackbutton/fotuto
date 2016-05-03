@@ -11,3 +11,5 @@ fotuto
    mimics
    vars
    windows
+   operators
+   fmenus
