@@ -10,8 +10,7 @@
 			Updated: <span class="last-update">{{ last_update | date:'yyyy-MM-dd @ HH:mm:ss' }}</span>
 		</div>
 
-		<!-- TODO: Move view menu to a general place -->
-		<f-menu position="view"></f-menu>
+		<ng-include src="'/static/spa/components/fmenus/_menu_view.html'"></ng-include>
 		<md-button>
 			<md-icon>edit</md-icon>
 			Edit

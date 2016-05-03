@@ -21,17 +21,21 @@ Testing
 
 Menus items
 -----------
-Some menus items are customizable, it resides in the :doc:`/ref/fmenus` app. There are three positions
+Some menus items are customizable, it resides in :doc:`/ref/fmenus`. There are three positions
 where menu will be displayed:
 
 * **Main:** The main top bar, at right side of the site logo.
 * **View:** In the top of the content area.
 * **User:** In the submenu behind user menu at right side of the top bar.
 
-The :doc:`/ref/fmenus` app provides the AngularJS_ directive ``<f-menu>`` to use in SPA HTML files it display the menu items
+The :doc:`/ref/fmenus` provides the AngularJS_ directive ``<f-menu>`` to use in SPA HTML files it display the menu items
 specified in it ``position`` attribute i.e. ``<f-menu position="view"></f-menu>``.
 
 .. todo:: add link to attribute reference in ``position`` on previous paragraph
+
+Also, :doc:`/ref/fmenus` provide and include for *View* menu, you can place it in the view by adding the following tag::
+
+  <ng-include src="'/static/spa/components/fmenus/_menu_view.html'"></ng-include>
 
 Front-end
 =========
