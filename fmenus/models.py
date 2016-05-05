@@ -51,3 +51,7 @@ class MenuItem(models.Model):
 
     def __unicode__(self):
         return "%s:%s" % (self.get_position_display(), self.text or id)
+
+    @property
+    def has_submenu(self):
+        return MenuItem.objects.filter(parent=self).count() > 0
