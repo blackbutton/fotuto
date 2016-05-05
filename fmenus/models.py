@@ -28,6 +28,7 @@ class MenuItem(models.Model):
     )
     active = models.BooleanField(default=True)
     order = models.SmallIntegerField(default=0, null=True, blank=True)
+    parent = models.ForeignKey('self', null=True, blank=True, help_text="Specify a parent to display a submenu")
     home = models.BooleanField(default=False,
         help_text="Lowest ordered Item this this field in true will be the homepage")
     position = models.CharField(max_length=15, choices=POSITION_CHOICES, default=POSITION_CHOICES[0][0])
