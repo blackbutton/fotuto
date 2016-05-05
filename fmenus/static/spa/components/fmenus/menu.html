@@ -1,4 +1,4 @@
-<md-button ng-repeat="menu in menus.view" href="{{ menu.link }}" class="{{ menu.style }} {{ menu.class_name }}">
+<md-button ng-repeat="menu in menus" href="{{ menu.link }}" class="{{ menu.style }} {{ menu.class_name }}">
 	<md-icon ng-hide="menu.mode == 'text'">{{ menu.icon }}</md-icon>
 	<span ng-hide="menu.mode == 'icon'">{{ menu.text }}</span>
 </md-button>
