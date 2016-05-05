@@ -1,6 +1,16 @@
-<md-button ng-repeat="menu in menus | filter: { parent: null }" href="{{ menu.link }}"
-           class="{{ menu.style }} {{ menu.class_name }}">
-	<md-icon ng-hide="menu.mode == 'text'">{{ menu.icon }}</md-icon>
-	<span ng-hide="menu.mode == 'icon'">{{ menu.text }}</span>
-	<!-- TODO: Display submenu on parent menus -->
-</md-button>
+<md-menu ng-repeat="menu in menus | filter: { parent: null }">
+	<md-button class="{{ menu.style }} {{ menu.class_name }}"
+	           ng-href="{{ menu.link }}" ng-click="open_menu(menu.has_submenu, $mdOpenMenu, $event)">
+		<md-icon ng-hide="menu.mode == 'text'">{{ menu.icon }}</md-icon>
+		<span ng-hide="menu.mode == 'icon'">{{ menu.text }}</span>
+	</md-button>
+	<md-menu-content ng-show="menu.has_submenu">
+		<!-- TODO: Take aware of more than 2 level nested submenus -->
+		<md-menu-item ng-repeat="submenu in menus | filter: {parent: menu.id}">
+			<md-button class="{{ submenu.style }} {{ submenu.class_name }}" ng-href="{{ submenu.link }}">
+				<md-icon ng-hide="submenu.mode == 'text'">{{ submenu.icon }}</md-icon>
+				<span ng-hide="submenu.mode == 'icon'">{{ submenu.text }}</span>
+			</md-button>
+		</md-menu-item>
+	</md-menu-content>
+</md-menu>
