@@ -106,9 +106,6 @@
 	<a href="mailto:fotutoscada@gmail.com" title="Email" class="email"><i class="mdi mdi-email"></i></a>
 </footer>
 
-{% for addon in addons %}
-	{% include addon|add:'/_footer_before.html' %}
-{% endfor %}
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-cookies/angular-cookies.js"></script>
@@ -116,11 +113,8 @@
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-animate/angular-animate.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-material/angular-material.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-material-icons/angular-material-icons.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}bower_components/d3/d3.min.js"></script>
-{# TODO: Including a file doesn't solve the problem of duplicated assets or using diferent version of the files #}
-{% for addon in addons %}
-	{% include addon|add:'/_footer_middle.html' %}
-{% endfor %}
 <script type="text/javascript" src="{{ STATIC_URL }}spa/app/fotuto-app.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/auth/controller.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}spa/components/config-wizard/controller.js"></script>
@@ -130,7 +124,7 @@
 {% include 'fmenus/_footer.html' %}
 {# TODO: Including a file doesn't solve the problem of duplicated assets or using diferent version of the files #}
 {% for addon in addons %}
-	{% include addon|add:'/_footer_after.html' %}
+	{% include addon|add:'/_footer.html' %}
 {% endfor %}
 </body>
 </html>
