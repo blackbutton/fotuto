@@ -4,6 +4,10 @@ var fotuto = angular.module('fotuto', ['ngRoute', 'ngCookies', 'ngMaterial', 'ng
 fotuto.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	// Component: Dashboard
+		.when('/dashboard', {
+			title: "Dashboard",
+			templateUrl: '/static/spa/components/dashboard/index.html'
+		})
 		.when('/mimics', {
 			title: "Mimics",
 			templateUrl: '/static/spa/components/dashboard/index.html'
@@ -31,7 +35,7 @@ fotuto.config(['$routeProvider', function ($routeProvider) {
 			templateUrl: '/static/spa/components/config-wizard/step-mimics.html',
 		})
 		.otherwise({
-			redirectTo: '/mimics'
+			redirectTo: '/dashboard'
 		});
 }]);
 
