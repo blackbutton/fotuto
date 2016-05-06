@@ -18,7 +18,7 @@ describe("Fotuto App", function () {
 		// Since there is no any windows, the configuration wizard intro is shown
 		it("Should redirect index.html to index.html#/mimics", function () {
 			browser.getLocationAbsUrl().then(function (url) {
-				expect(url).toEqual('/mimics');
+				expect(url).toEqual('/dashboard');
 			});
 		});
 
