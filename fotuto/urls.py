@@ -49,10 +49,10 @@ for app in ADDITIONAL_APPS:
         import_module(url_module)
         # possibly cleanup the after the imported module?
         # might fuss up the `include(...)` or leave a polluted namespace
-    except:
+    except Exception as e:
         # cleanup after module import if fails,
         #  maybe you can let the `include(...)` report failures
-        pass
+        print e
     else:
         url_regex = r'^add-on/{}/'.format(slugify(app))
         urlpatterns += [url(url_regex, include(url_module, app_name=app, namespace=app))]
