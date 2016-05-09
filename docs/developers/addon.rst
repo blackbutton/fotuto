@@ -14,5 +14,17 @@ Menus items
 ===========
 To add menu items, add fixtures to add/overwrite fotuto default :ref:`menu items <developers-fotuto-menu-items>`.
 
+Filters
+=======
+Fotuto provide some AngularJS_ filters to use in the SPA. All shared filters can be found in :file:`static/spa/shared/fotuto.filters.js`.
+
+Filter getItem
+--------------
+Used to get an item from a list given it's `slug` value. i.e. Given a list of :class:`vars.models.Vars` to obtain the
+var with ``slug``=*door-sensor*::
+
+   {{ var_list | getItem:'door-sensor' }}
+
 .. _Django: http://djangoproject.com
 .. _virtual environment: http://pypi.python.org/pypi/virtualenv
+.. _AngularJS: http://angularjs.org
