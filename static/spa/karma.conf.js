@@ -23,12 +23,20 @@ module.exports = function(config) {
       '../bower_components/angular-animate/angular-animate.js',
       '../bower_components/angular-aria/angular-aria.js',
       '../bower_components/angular-sanitize/angular-sanitize.js',
-      'app/**/*_test.js',
       'app/fotuto-app.js',
       'components/**/controller.js',
       'components/**/directives.js',
+      'components/**/*.html',
+      // Files in other django apps
+      '../../**/static/spa/components/**/*.directives.js',
+      '../../**/static/spa/components/**/*.controllers.js',
+      '../../**/static/spa/components/**/*.filters.js',
+      '../../**/static/spa/components/**/*.html',
+
+      // test files
+      'app/**/*_test.js',
       'components/**/*_test.js',
-      'components/**/*.html'
+      '../../**/static/spa/components/**/*_test.js'  // tests inside django packages
     ],
 
 
@@ -40,7 +48,8 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'components/**/*.html': ['ng-html2js']
+      'components/**/*.html': ['ng-html2js'],
+      '../../**/static/spa/components/**/*.html': ['ng-html2js']
     },
 
 
