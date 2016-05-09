@@ -24,6 +24,7 @@ module.exports = function(config) {
       '../bower_components/angular-aria/angular-aria.js',
       '../bower_components/angular-sanitize/angular-sanitize.js',
       'app/fotuto-app.js',
+      'shared/*.filters.js',
       'components/**/controller.js',
       'components/**/directives.js',
       'components/**/*.html',
@@ -34,7 +35,8 @@ module.exports = function(config) {
       '../../**/static/spa/components/**/*.html',
 
       // test files
-      'app/**/*_test.js',
+      'app/*_test.js',
+      'shared/*_test.js',
       'components/**/*_test.js',
       '../../**/static/spa/components/**/*_test.js'  // tests inside django packages
     ],
