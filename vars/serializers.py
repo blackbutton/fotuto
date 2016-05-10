@@ -38,6 +38,17 @@ class DevicePostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
+        read_only_fields = ('slug',)
+
+    def validate(self, data):
+        # TODO: This logic should reside in model save method
+        name_slug = slugify(data['name'])
+        data['slug'] = name_slug
+        i = 1
+        while Device.objects.filter(slug=data['slug']).count() > 0:
+            data['slug'] = '{}-{}'.format(name_slug, i)
+            i += 1
+        return data
 
     def get_links(self, obj):
         request = self.context['request']
@@ -53,17 +64,6 @@ class DeviceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Device
-        read_only_fields = ('slug',)
-
-    def validate(self, data):
-        # TODO: This logic should reside in model save method
-        name_slug = slugify(data['name'])
-        data['slug'] = name_slug
-        i = 1
-        while Device.objects.filter(slug=data['slug']).count() > 0:
-            data['slug'] = '{}-{}'.format(name_slug, i)
-            i += 1
-        return data
 
     def get_links(self, obj):
         request = self.context['request']
