@@ -15,7 +15,7 @@ class DeviceSerializerTestCase(TestCase):
         Tests that DeviceSerializer.validate() adds a slugged
         version of the name attribute to the data
         """
-        serializer = DeviceSerializer()
+        serializer = DevicePostSerializer()
         data = serializer.validate({'name': 'A Device'})
         self.assertEqual(data, {
             'name': 'A Device',
