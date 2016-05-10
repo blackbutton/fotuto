@@ -33,6 +33,20 @@ class VarSerializer(serializers.ModelSerializer):
         }
 
 
+class DevicePostSerializer(serializers.ModelSerializer):
+    links = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Device
+
+    def get_links(self, obj):
+        request = self.context['request']
+        return {
+            'self': drf_reverse('device-detail', kwargs={'pk': obj.pk}, request=request),
+            'vars': drf_reverse('var-list', request=request) + '?device={}'.format(obj.pk),
+        }
+
+
 class DeviceSerializer(serializers.ModelSerializer):
     vars = VarSerializer(many=True)
     links = serializers.SerializerMethodField()

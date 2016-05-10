@@ -261,6 +261,8 @@ class WindowAPITestCase(APITestCase):
 
 
 class DeviceAPITestCase(APITestCase):
+    maxDiff = None
+
     def setUp(self):
         self.device_1_data = {
             'name': "Some Device 1",
@@ -319,12 +321,11 @@ class DeviceAPITestCase(APITestCase):
         device_1_url_path = '/api/devices/%s/' % self.device_1.pk
         response = self.client.get(device_1_url_path, **self.auth_header)
         self.assertEqual(response.status_code, status.HTTP_200_OK, response.data)
+        vars_response = self.client.get('/api/vars/?device=%s' % self.device_1.pk, **self.auth_header)
         device_data = self.device_1_data.copy()
         device_data.update({
             'id': self.device_1.pk,
-            'vars': [
-                'http://testserver/api/vars/%s/' % var_pk for var_pk in self.device_1.vars.values_list('pk', flat=True)
-                ],
+            'vars': vars_response.data['results'],
             'links': {
                 'self': 'http://testserver%s' % device_1_url_path,
                 'vars': 'http://testserver/api/vars/?device={}'.format(self.device_1.pk)
