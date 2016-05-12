@@ -57,3 +57,20 @@ footer .github:hover {
 footer .email:hover {
 	color: forestgreen;
 }
+
+.hint {
+    position: absolute;
+    right: auto;
+    bottom: 7px;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.55, 0, 0.55, 0.2);
+    color: grey;
+}
+
+md-toast.md-success-toast-theme .md-toast-content {
+	background-color: green;
+}
+
+md-toast.md-error-toast-theme .md-toast-content {
+	background-color: red;
+}
