@@ -5,5 +5,5 @@ from .serializers import WindowSerializer
 
 
 class WindowViewSet(viewsets.ModelViewSet):
-    queryset = Window.objects.all()
+    queryset = Window.objects.filter(active=True)
     serializer_class = WindowSerializer
