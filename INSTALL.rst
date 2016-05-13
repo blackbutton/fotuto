@@ -7,7 +7,7 @@ Quick Install Development Environment
 
 1. Install SO dependences::
 
-     sudo apt-get install python-pip virtualenv
+     sudo apt-get install python-pip virtualenv libjpeg-dev
 
 2. Create environment and install packages::
 
