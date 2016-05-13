@@ -28,14 +28,14 @@ describe("Fotuto filters", function () {
 
 		it("Should return true if a number exist in array", inject(function (containsFilter) {
 			var test_array = [1, 2, 3, 4];
-			expect(containsFilter(test_array, 1)).toBeTrue();
-			expect(containsFilter(test_array, 5)).toBeFalse();
+			expect(containsFilter(test_array, 1)).toBeTruthy();
+			expect(containsFilter(test_array, 5)).toBeFalsy();
 		}));
 
 		it("Should return true if a string exist in array", inject(function (containsFilter) {
 			var test_array = ["A", "B", "C"];
-			expect(containsFilter(test_array, "A")).toBeTrue();
-			expect(containsFilter(test_array, "Z")).toBeFalse();
+			expect(containsFilter(test_array, "A")).toBeTruthy();
+			expect(containsFilter(test_array, "Z")).toBeFalsy();
 		}));
 	});
 
