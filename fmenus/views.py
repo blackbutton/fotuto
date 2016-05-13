@@ -5,6 +5,6 @@ from fmenus.serializers import MenuItemSerializer
 
 
 class MenuItemViewSet(viewsets.ModelViewSet):
-    queryset = MenuItem.objects.all()
+    queryset = MenuItem.objects.filter(active=True)
     serializer_class = MenuItemSerializer
     filter_fields = ('position', 'home')
