@@ -66,7 +66,7 @@ To generate HTML files, from the :file:`docs` directory execute the following::
 
 To generate reference files from Fotuto modules, move to :file:`docs` directory and execute the following command::
 
-  sphinx-apidoc -o ref ../
+  sphinx-apidoc -d 1 -f -o ref ../ ../**/migrations/*
 
 
 .. _Django: http://djangoproject.com
