@@ -8,16 +8,19 @@ fotuto.filter('abs', function () {
 });
 
 /**
- * Filter to get an element from a list by its `slug` property value
+ * Filter to get an element from a list by its property value
  *
- * This filter is usefull for get objects in Vars, Devices, etc
- *
- * Example usage:
+ * Usage examples:
  *
  *     vars | getItem:'some-slug'
+ *     vars | getItem:{id: 1}
+ *     vars | getItem:{'name__startswith': "Door Sen"}
  *
  * @param (array) list: The list to look for an item
- * @param (string) slug_value: The value to look for
+ * @param (string|object) param: The value to look for. If `param` is just a string it will search by the `slug` 
+ *    property. Also the parameter could be an object in the format `{'<PROPERTY_NAME>[__startswith]' : '<VALUE>'}`. By 
+ *    adding `__startswith` tail to the property name it will search the value of the property that starts with the 
+ *    *<VALUE>*.
  *
  */
 fotuto.filter('getItem',

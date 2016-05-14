@@ -20,10 +20,28 @@ Fotuto provide some AngularJS_ filters to use in the SPA. All shared filters can
 
 Filter getItem
 --------------
-Used to get an item from a list given it's `slug` value. i.e. Given a list of :class:`vars.models.Vars` to obtain the
-var with ``slug``=*door-sensor*::
+Used to get an item from a list given a property with a value. If the parameter is just a string it will search by the
+``slug`` property. Also, the parameter could be an object in the format
+``{'<PROPERTY_NAME>[__startswith]' : '<VALUE>'}``. By adding ``__startswith`` tail to the property name it will search the
+value of the property that starts with the *<VALUE>*.
+
+Here are some usage examples:
+
+Given a list of :class:`vars.models.Vars`, to obtain the var with:
+
+1. ``slug`` = *door-sensor*, it will need to pass just the string::
 
    {{ var_list | getItem:'door-sensor' }}
+
+
+2. ``id`` = *1*, will be needed to pass an object::
+
+   {{ var_list | getItem:{'id': 1} }}
+
+
+3. ``name`` starting by *"Door Sen"*, will be needed to pass an object with property tail::
+
+   {{ var_list | getItem:{'name__startswith': "Door Sen"} }}
 
 .. _Django: http://djangoproject.com
 .. _virtual environment: http://pypi.python.org/pypi/virtualenv
