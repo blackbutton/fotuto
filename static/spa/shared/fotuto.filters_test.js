@@ -18,6 +18,25 @@ describe("Fotuto filters", function () {
 			expect(getItemFilter(vars, 'some-var')).toEqual(some_var);
 		}));
 
+		it("Should return the Object by a property", inject(function (getItemFilter) {
+			var some_var = {'slug': 'some-var', 'name': 'Some Var'};
+			var other_var = {'slug': 'other-var', 'name': 'Other Var'};
+			var vars = [some_var, other_var];
+
+			expect(getItemFilter(vars, {'name': "Some Var"})).toEqual(some_var);
+			expect(getItemFilter(vars, {'name': "Some"})).toBeUndefined();
+			expect(getItemFilter(vars, {'slug': 'other-var'})).toEqual(other_var);
+		}));
+
+		it("Should return the first Object by a property with the startswith filter", inject(function (getItemFilter) {
+			var some_var = {'slug': 'some-var', 'name': 'Some Var'};
+			var other_var = {'slug': 'other-var', 'name': 'Some Var 2'};
+			var vars = [some_var, other_var];
+
+			expect(getItemFilter(vars, {'name__startswith': "Some V"})).toEqual(some_var);
+			expect(getItemFilter(vars, {'name__startswith': "Oter"})).toBeUndefined();
+			expect(getItemFilter(vars, {'slug__startswith': 'other-'})).toEqual(other_var);
+		}));
 	});
 
 	describe("contains Filter", function () {
