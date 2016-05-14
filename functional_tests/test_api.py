@@ -247,6 +247,8 @@ class WindowAPITestCase(APITestCase):
         windows_data = self.window_1_data.copy()
         windows_data.update({
             'id': self.window_1.pk,
+            'active': True,
+            'background_img': None,
             'mimics': [
                 'http://testserver/api/mimics/%s/' % self.mimic_1.pk,
                 'http://testserver/api/mimics/%s/' % self.mimic_2.pk,
