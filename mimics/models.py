@@ -12,7 +12,7 @@ class Mimic(models.Model):
     )
 
     name = models.CharField(max_length=50, blank=True)
-    vars = models.ManyToManyField(Var, blank=True, through='MimicVar')
+    vars = models.ManyToManyField(Var, blank=True)
     window = models.ForeignKey(Window, related_name='mimics')
     x = models.SmallIntegerField(null=True, blank=True, default=0)
     y = models.SmallIntegerField(null=True, blank=True, default=0)
@@ -33,7 +33,7 @@ class Mimic(models.Model):
         ordering = ('x', 'y', 'name')
 
     def __unicode__(self):
-        return self.name
+        return self.name or self.id
 
     def render_graphic(self):
         template = Template(self.graphic)
@@ -44,25 +44,15 @@ class Mimic(models.Model):
         return template.render(context)
 
 
-class MimicVar(models.Model):
-    """Definition of changes of the variable and its graphic representation in the ``Mimic``"""
-    mimic = models.ForeignKey(Mimic)
-    var = models.ForeignKey(Var)
+class Rule(models.Model):
+    """A formula to transform a variable value"""
+    var = models.ForeignKey(Var, null=True, help_text="Variable to modify")
     min = models.FloatField(null=True, blank=True, help_text="Minimum var's value to represent")
     max = models.FloatField(null=True, blank=True, help_text="Maximum var's value to represent")
-    description = models.TextField(max_length=255, blank=True)
-
-    class Meta:
-        unique_together = ('mimic', 'var')
-
-
-class Rule(models.Model):
-    """A formula to calculate an attribute value given the variable value"""
-    var = models.ForeignKey(Var, null=True, help_text="Variable to modify")
     operation = models.TextField(max_length=300, default="return <SOME_VAR_SLUG>;",
         help_text="JavaScript function content returning the result to assign to the attribute. Any var slug can be"
-                  " used as var, since all of them will be passed by parameters, for multiple sentences be sure to add "
-                  "an `;`."
+                  " used as var, since all of them will be passed by parameters, also `min` and `max` can be used as "
+                  "vars.For multiple sentences be sure to add a `;`."
     )
     description = models.TextField(max_length=255, blank=True)
 
