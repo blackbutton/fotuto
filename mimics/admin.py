@@ -1,16 +1,14 @@
 from django.contrib import admin
-from mimics.models import Mimic, MimicVar, Rule
+from mimics.models import Mimic, Rule
 
 
-class MimicVarInline(admin.TabularInline):
-    model = MimicVar
+class RuleAdmin(admin.ModelAdmin):
+    list_display = ('__unicode__', 'var', 'min', 'max')
 
 
 class MimicAdmin(admin.ModelAdmin):
-    list_display = ('name', 'window', 'x', 'y', 'width', 'height', 'graphic_type')
+    list_display = ('__unicode__', 'window', 'x', 'y', 'width', 'height', 'graphic_type')
     filter_horizontal = ('vars', 'rules')
-    inlines = (MimicVarInline,)
 
 admin.site.register(Mimic, MimicAdmin)
-admin.site.register(MimicVar)
-admin.site.register(Rule)
+admin.site.register(Rule, RuleAdmin)
