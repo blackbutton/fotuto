@@ -1,4 +1,6 @@
 from django.db import models
+from django.template import Context, Template
+
 from vars.models import Var
 from windows.models import Window
 
@@ -32,6 +34,14 @@ class Mimic(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def render_graphic(self):
+        template = Template(self.graphic)
+        vars_context = {}
+        for var in self.vars.all():
+            vars_context.update({var.slug: "{{ (mimic.vars | getItem:'%s').value }}" % var.slug})
+        context = Context(vars_context)
+        return template.render(context)
 
 
 class MimicVar(models.Model):

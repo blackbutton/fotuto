@@ -37,7 +37,7 @@ class MimicModelTest(ModelTestHelper):
             'height': 100
         }
         mimic = Mimic(**mimic_data)
-        # Error `lat` and `lon` vars not exist in device yet
+        # TODO: Error `lat` and `lon` vars not exist in device yet
         self.assertRaises(ValidationError, mimic.full_clean())
         mimic.save()
         self.assertEqual(Mimic.objects.all().count(), 1)
@@ -55,3 +55,30 @@ class MimicModelTest(ModelTestHelper):
         self.assertEqual(mimic.rules.count(), 2)
 
         # TODO: Validate only vars in mimics rules can be referenced by rule
+
+    def test_render_graphic(self):
+        device = Device.objects.create(name="GPS")
+        var1 = Var.objects.create(name="Latitude", device=device, slug="lat")
+        var2 = Var.objects.create(name="Longitude", device=device, slug="lon")
+        mimic_data = {
+            'name': "Map Pin",
+            'window': self.window,
+            'graphic': '<circle r="20" cx="{{ lat }}" cy="{{ lon }}">',
+            'width': 100,
+            'height': 100
+        }
+        mimic = Mimic(**mimic_data)
+        mimic.save()
+
+        MimicVar.objects.create(var=var1, mimic=mimic, min=0, max=400)
+        MimicVar.objects.create(var=var2, mimic=mimic, min=0, max=300)
+
+        latitude_rule = Rule.objects.create(var=var1, operation="scale=1/10000.0;return min+lat*scale")
+        longitude_rule = Rule.objects.create(var=var1, operation="scale=1/10000.0;return min+lon*scale")
+        mimic.rules.add(latitude_rule)
+        mimic.rules.add(longitude_rule)
+
+        # TODO: Test with var slug with hiphen i.e. ``some-var-1``
+        expected_html = '<circle r="20" cx="{{ (mimic.vars | getItem:\'lat\').value }}" cy="{{ (mimic.vars | getItem:\'lon\').value }}">'
+        html = mimic.render_graphic()
+        self.assertHTMLEqual(expected_html, html)
