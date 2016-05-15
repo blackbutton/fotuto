@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from .models import Mimic, MimicVar
-from .serializers import MimicSerializer, MimicPostSerializer, MimicVarSerializer
+from .models import Mimic, Rule
+from .serializers import MimicSerializer, MimicPostSerializer, RuleSerializer
 
 
 class MimicViewSet(viewsets.ModelViewSet):
@@ -15,7 +15,8 @@ class MimicViewSet(viewsets.ModelViewSet):
             return MimicSerializer
 
 
-class MimicVarViewSet(viewsets.ModelViewSet):
-    serializer_class = MimicVarSerializer
-    queryset = MimicVar.objects.all()
-    filter_fields = ('mimic',)
+class RuleViewSet(viewsets.ModelViewSet):
+    queryset = Rule.objects.all()
+    serializer_class = RuleSerializer
+    filter_fields = ('var', 'mimic')
+
