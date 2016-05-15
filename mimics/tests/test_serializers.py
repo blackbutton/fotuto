@@ -35,7 +35,7 @@ class MimicSerializerTestCase(TestCase):
         # TODO: `Mimic.window` field should not be required, in fact, `mimics` can creates as a library to select from
         #     it to use in `Windows`, so there should be a m2m field `windows.mimics` instead `mimic.window`
         serializer = MimicSerializer(
-            data={'name': "Alarm Controller", 'slug': 'alarm-controller', 'window': self.window.pk, 'vars': [], 'var_rules': []},
+            data={'name': "Alarm Controller", 'slug': 'alarm-controller', 'window': self.window.pk, 'vars': [], 'rules': []},
             context={'request': self.factory.get('/api/mimics/')}
         )
         valid = serializer.is_valid()
@@ -46,5 +46,6 @@ class MimicSerializerTestCase(TestCase):
                 'self': 'http://testserver/api/mimics/%s/' % mimic.pk,
                 'window': 'http://testserver/api/windows/%s/' % mimic.window.pk,
                 'vars': 'http://testserver/api/vars/?mimic=%s' % mimic.pk,
+                'rules': 'http://testserver/api/rules/?mimic=%s' % mimic.pk,
             }
         }, serializer.data)

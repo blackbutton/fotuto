@@ -9,7 +9,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase, APIRequestFactory, force_authenticate
 
 from fotuto.urls import api_root
-from mimics.models import Mimic, MimicVar, Rule
+from mimics.models import Mimic, Rule
 from vars.models import Device, Var
 from windows.models import Window
 
@@ -20,13 +20,6 @@ from windows.models import Window
 # TODO: Refactor Api Tests classes
 
 User = get_user_model()
-
-
-def add_mimic_var(mimic, var):
-    var_rules = MimicVar.objects.create(mimic=mimic, var=var)
-    rule = Rule.objects.create(attr='y')
-    var_rules.rules.add(rule)
-    return var_rules
 
 
 class APIRootURLTestCase(TestCase):
@@ -436,7 +429,7 @@ class VarAPITestCase(APITestCase):
         window = Window.objects.create(title="Security 2", slug="security-2")
         mimic = Mimic.objects.create(name="Sensor Door 1", window=window)
         # TODO: Use a better example
-        add_mimic_var(mimic, self.var_door_1_state)
+        mimic.vars.add(self.var_door_1_state)
 
         filter_by_mimic_url_path = '/api/vars/?mimic=%s' % mimic.pk
         response = self.client.get(filter_by_mimic_url_path, **self.auth_header)
@@ -512,7 +505,7 @@ class MimicAPITestCase(APITestCase):
         }
         self.mimic_alarm_spotlight = Mimic.objects.create(**self.mimic_alarm_spotlight_data)
         # TODO: Use a better example
-        add_mimic_var(self.mimic_alarm_spotlight, self.var_alarm_state)
+        self.mimic_alarm_spotlight.vars.add(self.var_alarm_state)
 
         self.mimic_sensor_front_door_data = {
             'name': "Front Door Sensor",
@@ -522,7 +515,7 @@ class MimicAPITestCase(APITestCase):
             'y': 0
         }
         self.mimic_sensor_front_door = Mimic.objects.create(**self.mimic_sensor_front_door_data)
-        add_mimic_var(self.mimic_sensor_front_door, self.var_sensor_door_comm)
+        self.mimic_sensor_front_door.vars.add(self.var_sensor_door_comm)
 
         self.user = User.objects.create_user('user', 'user@mail.com', '123')
         self.token = Token.objects.get_or_create(user=self.user)[0].key
@@ -584,7 +577,9 @@ class MimicAPITestCase(APITestCase):
                 'self': 'http://testserver%s' % mimic_sensor_front_door_url_path,
                 'window': 'http://testserver/api/windows/%s/' % self.mimic_sensor_front_door.window.pk,
                 'vars': 'http://testserver/api/vars/?mimic=%s' % self.mimic_sensor_front_door.pk,
+                'rules': 'http://testserver/api/rules/?mimic=%s' % self.mimic_sensor_front_door.pk,
             },
+            'rules': [],  # Mimics should display var_rules data
             'description': "",
             'graphic_type': "svg",
             'height': 210,
@@ -595,12 +590,6 @@ class MimicAPITestCase(APITestCase):
             'http://testserver/api/vars/?mimic=%s' % self.mimic_sensor_front_door.pk, **self.auth_header
         )
         mimic_data['vars'] = json.loads(json.dumps(mimic_vars_response.data['results']))
-        # Mimics should display var_rules data
-        mimic_var_rules_response = self.client.get(
-            'http://testserver/api/var_rules/?mimic=%s' % self.mimic_sensor_front_door.pk, **self.auth_header
-        )
-        mimic_data['var_rules'] = json.loads(json.dumps(mimic_var_rules_response.data['results']))
-
         self.assertDictEqual(mimic_data, response.data)
 
     def test_filter_routes(self):
