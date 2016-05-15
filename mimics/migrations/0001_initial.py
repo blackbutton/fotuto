@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('width', models.SmallIntegerField(default=160)),
                 ('height', models.SmallIntegerField(default=210)),
                 ('graphic_type', models.CharField(choices=[(b'svg', b'SVG')], default=b'svg', max_length=20)),
-                ('graphic', models.TextField(blank=True, help_text=b"Dynamic graphic to represent changes in variables, in case of svg code, tag's attributes could contains variables slug defined in var list. if you need to transform a value of a variable definea rule for it.")),
+                ('graphic', models.TextField(blank=True, help_text=b"Dynamic graphic to represent changes in variables, in case of svg code, tag's attributes could contains variables slug defined in var list, used var in the format `{{ <VAR_SLUG> }}`. If you need to transform a value of a variable define a rule for it.")),
                 ('description', models.TextField(blank=True, max_length=255)),
             ],
             options={
