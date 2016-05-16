@@ -21,10 +21,14 @@ class RuleSerializer(serializers.ModelSerializer):
 class MimicSerializer(serializers.ModelSerializer):
     vars = VarSerializer(many=True, read_only=True)
     rules = RuleSerializer(many=True, read_only=True)
+    graphic = serializers.SerializerMethodField()
     links = serializers.SerializerMethodField()
 
     class Meta:
         model = Mimic
+
+    def get_graphic(self, obj):
+        return obj.render_graphic().replace('&#39;', "'")
 
     def get_links(self, obj):
         request = self.context['request']
