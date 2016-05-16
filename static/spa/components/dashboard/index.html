@@ -25,15 +25,13 @@
 				TODO: Allow to open in full screen
 				TODO: Take aware of with 100% and positions in widgets
 				TODO: Fix all styles
+				TODO: Move all mimic code to the directive template
 				 -->
 				<div class="mimics md-padding" style="position:absolute;min-height: 500px">
 					<div ng-repeat="mimic in scene.mimics" class="mimic {{ mimic.slug }}"
 					     style="position:absolute;top:{{ mimic.y }}px;left:{{ mimic.x }}px">
 						<h3>{{ mimic.name }}</h3>
-						<!-- TODO: use mimic.mimic_type instead of hardcoded svg -->
-						<!-- TODO: Iterate by each var_rule -->
-						<svg width="{{ mimic.width }}" height="{{ mimic.height }}"
-						     ng-bind-html="(mimic.graphic + mimic.var_rules[0].graphic) | unsafe"></svg>
+						<ftt-mimic-graphic mimic="mimic"></ftt-mimic-graphic>
 						<ul>
 							<li ng-repeat="var in mimic.vars" class="{{ var.slug }}">{{ var.name }}
 								<span class="value">{{ var.value }}</span>
