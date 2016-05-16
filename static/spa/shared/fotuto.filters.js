@@ -47,7 +47,6 @@ fotuto.filter('getItem',
 	}
 );
 
-
 /**
  * Filter to check in an element exist in an array
  */
@@ -56,3 +55,5 @@ fotuto.filter('contains', function () {
 		return array.indexOf(needle) >= 0;
 	};
 });
+
+fotuto.filter('unsafe', function($sce) { return $sce.trustAsHtml; });
