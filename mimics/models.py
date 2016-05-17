@@ -21,7 +21,7 @@ class Mimic(models.Model):
     graphic_type = models.CharField(max_length=20, choices=TYPE_CHOICES, default=TYPE_CHOICES[0][0])
     graphic = models.TextField(blank=True,
         help_text="Dynamic graphic to represent changes in variables, in case of svg code, tag's attributes could "
-                  "contains variables slug defined in var list, used var in the format `{{ <VAR_SLUG> }}`. If you need "
+                  "contains variables slug defined in var list, used var in the format `{{ &lt;VAR_SLUG&gt; }}`. If you need "
                   "to transform a value of a variable define a rule for it."
     )
     rules = models.ManyToManyField('Rule', blank=True, null=True,
@@ -33,7 +33,7 @@ class Mimic(models.Model):
         ordering = ('x', 'y', 'name')
 
     def __unicode__(self):
-        return self.name or self.id
+        return self.name or str(self.id)
 
     def render_graphic(self):
         template = Template(self.graphic)
