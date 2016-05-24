@@ -8,6 +8,11 @@ describe("Fotuto filters", function () {
 			expect($filter('getItem')).not.toBeNull();
 		}));
 
+		it("Should return undefined if list is empty", inject(function (getItemFilter){
+			var vars = [];
+			expect(getItemFilter(vars, 'other-var')).toBeUndefined();
+		}));
+
 		it("Should return the Item", inject(function (getItemFilter) {
 			var some_var = {'slug': 'some-var', 'name': 'Some Var'};
 			var other_var = {'slug': 'other-var', 'name': 'Other Var'};
