@@ -7,7 +7,7 @@ Quick Install Development Environment
 
 1. Install SO dependences::
 
-     sudo apt-get install python-pip virtualenv libjpeg-dev
+     sudo apt-get install python-pip python-virtualenv libjpeg-dev zlib1g-dev python-dev
 
 2. Create environment and install packages::
 
@@ -16,17 +16,22 @@ Quick Install Development Environment
      source env/bin/activate
      pip install -r requirments.txt
 
-   .. note:: If use PostgreSQL, maybe is requrie to install::
+   .. note:: If use PostgreSQL, maybe is required to install::
 
-        sudo apt-get install libpq-dev python-dev
+        sudo apt-get install libpq-dev
+        sudo apt-get install postgresql postgresql-contrib
         pip install psycopg2
 
-      Then create the database, and change database settings by rename `fotuto/settings_local.py.example` to
+      Then create the database::
+
+         sudo -u postgres createdb shrimps
+
+      And change database settings by rename `fotuto/settings_local.py.example` to
       `fotuto/settings_local.py` and change the values.
 
-3. Create Database::
+3. Generate tables in database::
 
-     python migrate
+     python manage.py migrate
 
 4. Create superuser::
 
