@@ -10,6 +10,9 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -39,6 +42,8 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'crispy_forms',
     'bootstrap3',
+    'kombu.transport.django',
+    'djcelery',
     'fmenus',
     'operators',
     'vars',
@@ -147,6 +152,19 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     'PAGE_SIZE': 100,
 }
+
+# Celery
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+BROKER_URL = 'django://'
+CELERYBEAT_SCHEDULE = {
+    'read-vars': {
+        'task': 'tasks.read_vars',
+        'schedule': datetime.timedelta(seconds=45),
+    }
+}
+
+import djcelery
+djcelery.setup_loader()
 
 try:
     from settings_local import *
