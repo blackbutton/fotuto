@@ -5,3 +5,5 @@ markdown
 django-filter
 django-crispy-forms
 Pillow
+celery
+django-celery
