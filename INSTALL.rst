@@ -24,7 +24,7 @@ Quick Install Development Environment
 
       Then create the database::
 
-         sudo -u postgres createdb shrimps
+         sudo -u postgres createdb fotuto
 
       And change database settings by rename `fotuto/settings_local.py.example` to
       `fotuto/settings_local.py` and change the values.
@@ -45,7 +45,11 @@ Quick Install Development Environment
      cd PROJECT_ROOT
      bower install
 
-6. Start development server::
+6. Start task worker::
+
+     python manage.py celery -A fotuto worker -B -l info
+
+7. Start development server::
 
      python manage.py runserver
 
@@ -59,7 +63,7 @@ Back-end Tests
 
 .. code::
 
-   pip install -r requirments_test.txt
+   pip install -r requirements_test.txt
    python manage.py test
 
 Front-end Tests
