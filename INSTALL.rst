@@ -14,7 +14,7 @@ Quick Install Development Environment
      cd PROJECT_ROOT
      virtualenv env
      source env/bin/activate
-     pip install -r requirments.txt
+     pip install -r requirements.txt
 
    .. note:: If use PostgreSQL, maybe is required to install::
 
@@ -51,7 +51,7 @@ Quick Install Development Environment
 
 7. Start development server::
 
-     python manage.py runserver
+     python manage.py runserver 0.0.0.0:8000
 
 Run Tests
 =========
