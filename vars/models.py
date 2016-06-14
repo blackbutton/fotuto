@@ -19,11 +19,20 @@ class Device(models.Model):
 
 
 class Var(models.Model):
-    TYPE_DIGITAL = 'binary'
-    TYPE_ANALOG = 'real'
+    # Types defined in https://docs.python.org/2/library/struct.html#format-characters
     TYPE_CHOICES = (
-        (TYPE_DIGITAL, "Digital"),
-        (TYPE_ANALOG, "Analog"),
+        ('?', "Bool"),
+        ('c', "Char (1b)"),
+        ('b', "Singed Char (1b)"),
+        ('B', "Unsigned Char (1b)"),
+        ('h', "Short (2b)"),
+        ('H', "Unsigned Short (2b)"),
+        ('i', "Integer (4b)"),
+        ('I', "Unsigned Integer (4b)"),
+        ('q', "Long (8b)"),
+        ('Q', "Unsigned Long (8b)"),
+        ('f', "Float (4b)"),
+        ('d', "Double (8b)"),
     )
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=100, unique=True,
@@ -31,14 +40,14 @@ class Var(models.Model):
     )
     active = models.BooleanField(default=True)
     device = models.ForeignKey(Device, related_name="vars")
-    var_type = models.CharField("Type", max_length=10, blank=True, choices=TYPE_CHOICES, default=TYPE_DIGITAL)
+    var_type = models.CharField("Type", max_length=10, blank=True, choices=TYPE_CHOICES, default=TYPE_CHOICES[0][0])
     units = models.CharField(max_length=10, blank=True)
     value = models.FloatField(blank=True, null=True, default=0)
     description = models.CharField(max_length=255, blank=True)
     # TODO: Add magnitude
 
     class Meta:
-        ordering = ('-active', 'device')
+        order_with_respect_to = 'device'
 
     def __unicode__(self):
         return '[%s] %s' % (self.device.slug, self.name)
