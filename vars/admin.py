@@ -3,7 +3,8 @@ from .models import Var, Device
 
 
 class VarAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug', 'active', 'device', 'var_type', 'value', 'units')
+    list_display = ('name', 'slug', '_order', 'active', 'device', 'var_type', 'value', 'units')
+    # TODO: list_editable = ('_order',)
 
 
 class DeviceAdmin(admin.ModelAdmin):
